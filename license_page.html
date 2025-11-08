@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PlotForge – License Options</title>
+<title>PlotForge – License Information</title>
 <style>
   body {
     font-family: 'Segoe UI', sans-serif;
@@ -13,8 +13,8 @@
     padding: 0;
   }
   header {
-    background: #004aad;
-    color: white;
+    background: #d3d3d3; /* Light Gray for formal look */
+    color: black;
     padding: 2rem;
     text-align: center;
   }
@@ -28,6 +28,51 @@
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9em;
+    color: #777;
+  }
+  nav {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #004aad;
+    font-weight: 600;
+  }
+  .cta-secondary {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-left: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #004aad;
+    background: white;
+    color: #004aad;
+  }
+  .cta-secondary:hover {
+    background: #004aad;
+    color: white;
+  }
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  .pricing-table th {
+    background-color: #f1f1f1;
+  }
   .cta {
     display: inline-block;
     margin-top: 1rem;
@@ -38,73 +83,73 @@
     text-decoration: none;
     font-weight: 600;
   }
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9em;
-    color: #777;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 2rem;
-  }
-  table, th, td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-  }
-  th {
-    background-color: #004aad;
-    color: white;
-  }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>PlotForge License Options</h1>
-  <p>Welcome to PlotForge's licensing page! Below you'll find all our available packages.</p>
+  <h1>PlotForge – License Information</h1>
+  <p>Choose a license plan that works for you. Simple, flexible, and affordable.</p>
 </header>
 
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="information.html#purpose">Purpose</a>
+  <a href="information.html#objectives">Objectives</a>
+</nav>
+
 <section>
-  <h2>💼 Pricing</h2>
+  <h2>💼 License Plans</h2>
   <p>
-    Choose your preferred license package below. We offer flexible options for various needs.
+    Below are the different license plans available for PlotForge:
   </p>
-  <table>
+
+  <!-- Pricing table with 1 month, 3 month, 6 month, and 1 year plans -->
+  <table class="pricing-table">
     <thead>
       <tr>
-        <th>Package</th>
+        <th>Plan</th>
         <th>Duration</th>
         <th>Price</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Basic</td>
+        <td>Basic Plan</td>
         <td>1 Month</td>
-        <td>$49</td>
+        <td>$29</td>
+        <td><a href="mailto:sales@plotforge.io?subject=PlotForge%20License%20Request&body=I%27d%20like%20to%20purchase%20the%201%20month%20license." class="cta">Request License</a></td>
       </tr>
       <tr>
-        <td>Standard</td>
+        <td>Standard Plan</td>
         <td>3 Months</td>
-        <td>$129</td>
+        <td>$79</td>
+        <td><a href="mailto:sales@plotforge.io?subject=PlotForge%20License%20Request&body=I%27d%20like%20to%20purchase%20the%203%20month%20license." class="cta">Request License</a></td>
       </tr>
       <tr>
-        <td>Pro</td>
+        <td>Professional Plan</td>
         <td>6 Months</td>
-        <td>$199</td>
+        <td>$139</td>
+        <td><a href="mailto:sales@plotforge.io?subject=PlotForge%20License%20Request&body=I%27d%20like%20to%20purchase%20the%206%20month%20license." class="cta">Request License</a></td>
       </tr>
       <tr>
-        <td>Ultimate</td>
+        <td>Annual Plan</td>
         <td>1 Year</td>
-        <td>$349</td>
+        <td>$199</td>
+        <td><a href="mailto:sales@plotforge.io?subject=PlotForge%20License%20Request&body=I%27d%20like%20to%20purchase%20the%201%20year%20license." class="cta">Request License</a></td>
       </tr>
     </tbody>
   </table>
-  <p>For bulk or enterprise pricing, contact us via email at <a href="mailto:sales@plotforge.io">sales@plotforge.io</a></p>
-  <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup.exe" class="cta">Download PlotForge Feature Summary</a>
+</section>
+
+<section>
+  <h2>📩 Contact</h2>
+  <p>
+    Have questions or need a quote? Feel free to reach out!<br>
+    Email us at: <a href="mailto:sales@plotforge.io">sales@plotforge.io</a>
+  </p>
 </section>
 
 <footer>
