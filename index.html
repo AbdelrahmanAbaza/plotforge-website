@@ -91,11 +91,18 @@
     width: 100%;
     max-width: 400px;
   }
+
   #loom-feature-image {
     margin-top: 1.5rem;
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  #loom-feature-image.visible {
+    opacity: 1;
   }
 </style>
 </head>
@@ -128,13 +135,12 @@
 
   <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe" class="cta">Download Free 14-Day Trial</a>
 
-  <!-- Link to the license page -->
   <a href="license.html" class="cta-secondary">
     Already tried? Want to get a license?
   </a>
 </section>
 
-<!-- ✅ Features section with fixed images defined by you -->
+<!-- ✅ Static features dropdown with pre-assigned images -->
 <section>
   <h2>🧩 PlotForge Features</h2>
   <p>Select a feature from the list to see its screenshot.</p>
@@ -155,8 +161,7 @@
   </select>
 
   <div id="loom-feature-image-wrapper">
-    <!-- Image gets shown/updated via JavaScript -->
-    <img id="loom-feature-image" src="" alt="" style="display:none;">
+    <img id="loom-feature-image" src="" alt="">
   </div>
 </section>
 
@@ -180,21 +185,20 @@
   © 2025 PlotForge | Built with ❤️ by Abdelrahman Abaza
 </footer>
 
-<!-- 🔽 Simple JS to switch images when dropdown changes -->
+<!-- ✅ Script -->
 <script>
-  // 👇 You define the image files here
-  // Make sure the paths match where you put the images
+  // ✅ Use "Images/" folder — update filenames to match your actual files
   const featureImages = {
-    feature1: { src: "images/feature1-single-plots.png", alt: "Single Plots" },
-    feature2: { src: "images/feature2-multiple-plots.png", alt: "Multiple Plots" },
-    feature3: { src: "images/feature3-live-cursor.png", alt: "Live Cursor" },
-    feature4: { src: "images/feature4-axis-limits.png", alt: "Axis Limits Modification" },
-    feature5: { src: "images/feature5-live-zone-stats.png", alt: "Live Zone Statistics" },
-    feature6: { src: "images/feature6-data-export.png", alt: "Data Export" },
-    feature7: { src: "images/feature7-region-marking.png", alt: "Region Marking" },
-    feature8: { src: "images/feature8-data-export-2.png", alt: "Data Export (Alt)" },
-    feature9: { src: "images/feature9-saving-session.png", alt: "Saving Session" },
-    feature10: { src: "images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts" }
+    feature1: { src: "Images/feature1-single-plots.png", alt: "Single Plots" },
+    feature2: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots" },
+    feature3: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor" },
+    feature4: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits Modification" },
+    feature5: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone Statistics" },
+    feature6: { src: "Images/feature6-data-export.png", alt: "Data Export" },
+    feature7: { src: "Images/feature7-region-marking.png", alt: "Region Marking" },
+    feature8: { src: "Images/feature8-data-export-2.png", alt: "Data Export (Alt)" },
+    feature9: { src: "Images/feature9-saving-session.png", alt: "Saving Session" },
+    feature10: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts" }
   };
 
   const selectEl = document.getElementById("loom-feature-select");
@@ -204,16 +208,20 @@
     const value = this.value;
 
     if (!value || !featureImages[value]) {
-      imgEl.style.display = "none";
+      imgEl.classList.remove("visible");
       imgEl.src = "";
       imgEl.alt = "";
       return;
     }
 
     const feature = featureImages[value];
-    imgEl.src = feature.src;
-    imgEl.alt = feature.alt;
-    imgEl.style.display = "block";
+    imgEl.classList.remove("visible");
+    // brief delay to make fade smoother
+    setTimeout(() => {
+      imgEl.src = feature.src;
+      imgEl.alt = feature.alt;
+      imgEl.classList.add("visible");
+    }, 150);
   });
 </script>
 
