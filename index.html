@@ -38,6 +38,22 @@
     text-decoration: none;
     font-weight: 600;
   }
+  .cta-secondary {
+    display: inline-block;
+    margin-top: 1rem;
+    margin-left: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #004aad;
+    background: white;
+    color: #004aad;
+  }
+  .cta-secondary:hover {
+    background: #004aad;
+    color: white;
+  }
   footer {
     text-align: center;
     padding: 2rem;
@@ -66,13 +82,22 @@
     <li>✅ Export regions to CSV or image</li>
     <li>✅ Save templates for repeat analysis</li>
   </ul>
-  <a href="#download" class="cta">Download Free 14-Day Trial</a>
+
+  <!-- MAIN CALLS TO ACTION -->
+  <!-- TODO: replace YOUR_DOWNLOAD_URL_HERE with the real URL of your installer -->
+  <a href="YOUR_DOWNLOAD_URL_HERE" class="cta">Download Free 14-Day Trial</a>
+
+  <!-- Opens an email window to request a license -->
+  <a href="mailto:sales@plotforge.io?subject=PlotForge%20License%20Request&body=Hi%2C%20I%27d%20like%20to%20purchase%20a%20PlotForge%20license." 
+     class="cta-secondary">
+    Already tried? Want to get a license?
+  </a>
 </section>
 
 <section>
   <h2>🎥 Quick Demo</h2>
   <p>Watch how PlotForge simplifies data analysis:</p>
-  <!-- Replace this link later with your Loom demo -->
+  <!-- Replace this link later with your Loom or real demo -->
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
 </section>
 
@@ -80,8 +105,8 @@
   <h2>⬇️ Download Trial</h2>
   <p>
     Download the latest Windows installer for PlotForge (no Python required).<br><br>
-    <!-- Replace this link later with your actual .exe link -->
-    <a href="https://yourlink.com/PlotForgeInstaller.exe" class="cta">Download Now</a>
+    <!-- Same download link as the main CTA above -->
+    <a href="YOUR_DOWNLOAD_URL_HERE" class="cta">Download Now</a>
   </p>
 </section>
 
