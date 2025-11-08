@@ -80,6 +80,23 @@
     color: #004aad;
     font-weight: 600;
   }
+
+  /* Loom Features styles */
+  .loom-select {
+    margin-top: 1rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+  }
+  #loom-feature-image {
+    margin-top: 1.5rem;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
 </style>
 </head>
 <body>
@@ -117,10 +134,30 @@
   </a>
 </section>
 
+<!-- ✅ New Loom Features section (replaces the old video section) -->
 <section>
-  <h2>🎥 Quick Demo</h2>
-  <p>Watch how PlotForge simplifies data analysis:</p>
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+  <h2>🧩 Loom Features</h2>
+  <p>Select a Loom feature from the list to see a screenshot.</p>
+
+  <label for="loom-feature-select"><strong>Loom Features:</strong></label><br>
+  <select id="loom-feature-select" class="loom-select">
+    <option value="">-- Please choose a feature --</option>
+    <option value="feature1">Feature 1 – Recording Interface</option>
+    <option value="feature2">Feature 2 – Sharing Options</option>
+    <option value="feature3">Feature 3 – Viewer Analytics</option>
+    <option value="feature4">Feature 4 – Comments & Reactions</option>
+    <option value="feature5">Feature 5 – Team Library</option>
+    <option value="feature6">Feature 6 – Privacy Controls</option>
+    <option value="feature7">Feature 7 – Integrations</option>
+    <option value="feature8">Feature 8 – Transcripts</option>
+    <option value="feature9">Feature 9 – Edit Tools</option>
+    <option value="feature10">Feature 10 – Keyboard Shortcuts</option>
+  </select>
+
+  <div id="loom-feature-image-wrapper">
+    <!-- Image gets shown/updated via JavaScript -->
+    <img id="loom-feature-image" src="" alt="" style="display:none;">
+  </div>
 </section>
 
 <section id="download">
@@ -130,8 +167,6 @@
     <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/Feature_Document/PlotForge_Feature_Summary_V1.pdf" class="cta-summary" download>Download Now</a>
   </p>
 </section>
-
-<!-- Removed pricing section as requested -->
 
 <section>
   <h2>📩 Contact</h2>
@@ -144,6 +179,41 @@
 <footer>
   © 2025 PlotForge | Built with ❤️ by Abdelrahman Abaza
 </footer>
+
+<!-- 🔽 Simple JS to switch images when dropdown changes -->
+<script>
+  const featureImages = {
+    feature1: { src: "images/loom-feature1.png", alt: "Loom recording interface" },
+    feature2: { src: "images/loom-feature2.png", alt: "Loom sharing options" },
+    feature3: { src: "images/loom-feature3.png", alt: "Loom viewer analytics" },
+    feature4: { src: "images/loom-feature4.png", alt: "Loom comments and reactions" },
+    feature5: { src: "images/loom-feature5.png", alt: "Loom team library" },
+    feature6: { src: "images/loom-feature6.png", alt: "Loom privacy controls" },
+    feature7: { src: "images/loom-feature7.png", alt: "Loom integrations" },
+    feature8: { src: "images/loom-feature8.png", alt: "Loom transcripts" },
+    feature9: { src: "images/loom-feature9.png", alt: "Loom edit tools" },
+    feature10: { src: "images/loom-feature10.png", alt: "Loom keyboard shortcuts" }
+  };
+
+  const selectEl = document.getElementById("loom-feature-select");
+  const imgEl = document.getElementById("loom-feature-image");
+
+  selectEl.addEventListener("change", function () {
+    const value = this.value;
+
+    if (!value || !featureImages[value]) {
+      imgEl.style.display = "none";
+      imgEl.src = "";
+      imgEl.alt = "";
+      return;
+    }
+
+    const feature = featureImages[value];
+    imgEl.src = feature.src;
+    imgEl.alt = feature.alt;
+    imgEl.style.display = "block";
+  });
+</script>
 
 </body>
 </html>
