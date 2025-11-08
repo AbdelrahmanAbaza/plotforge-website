@@ -81,7 +81,7 @@
     font-weight: 600;
   }
 
-  /* Loom Features styles */
+  /* Features dropdown styles */
   .loom-select {
     margin-top: 1rem;
     padding: 0.6rem 0.8rem;
@@ -134,12 +134,15 @@
   </a>
 </section>
 
-<!-- ✅ New Loom Features section (replaces the old video section) -->
+<!-- 🔁 New section: dropdown + upload per option -->
 <section>
-  <h2>🧩 Loom Features</h2>
-  <p>Select a Loom feature from the list to see a screenshot.</p>
+  <h2>🧩 Feature Screenshots</h2>
+  <p>
+    Select a feature from the list. If it doesn’t have an image yet,
+    you’ll be asked to choose a photo from your computer.
+  </p>
 
-  <label for="loom-feature-select"><strong>Loom Features:</strong></label><br>
+  <label for="loom-feature-select"><strong>Features:</strong></label><br>
   <select id="loom-feature-select" class="loom-select">
     <option value="">-- Please choose a feature --</option>
     <option value="feature1">Feature 1 – Single Plots</option>
@@ -153,6 +156,9 @@
     <option value="feature9">Feature 9 – Saving Session</option>
     <option value="feature10">Feature 10 – Keyboard Shortcuts</option>
   </select>
+
+  <!-- Hidden file input used for uploads -->
+  <input type="file" id="feature-file-input" accept="image/*" style="display:none">
 
   <div id="loom-feature-image-wrapper">
     <!-- Image gets shown/updated via JavaScript -->
@@ -180,38 +186,60 @@
   © 2025 PlotForge | Built with ❤️ by Abdelrahman Abaza
 </footer>
 
-<!-- 🔽 Simple JS to switch images when dropdown changes -->
+<!-- 🔽 JS: for each dropdown option, let user upload & remember a photo -->
 <script>
-  const featureImages = {
-    feature1: { src: "images/loom-feature1.png", alt: "Loom recording interface" },
-    feature2: { src: "images/loom-feature2.png", alt: "Loom sharing options" },
-    feature3: { src: "images/loom-feature3.png", alt: "Loom viewer analytics" },
-    feature4: { src: "images/loom-feature4.png", alt: "Loom comments and reactions" },
-    feature5: { src: "images/loom-feature5.png", alt: "Loom team library" },
-    feature6: { src: "images/loom-feature6.png", alt: "Loom privacy controls" },
-    feature7: { src: "images/loom-feature7.png", alt: "Loom integrations" },
-    feature8: { src: "images/loom-feature8.png", alt: "Loom transcripts" },
-    feature9: { src: "images/loom-feature9.png", alt: "Loom edit tools" },
-    feature10: { src: "images/loom-feature10.png", alt: "Loom keyboard shortcuts" }
-  };
+  // Store images per feature (in memory only, while page is open)
+  const featureImages = {}; // { featureKey: dataURL }
 
   const selectEl = document.getElementById("loom-feature-select");
   const imgEl = document.getElementById("loom-feature-image");
+  const fileInput = document.getElementById("feature-file-input");
 
+  // When user selects a feature
   selectEl.addEventListener("change", function () {
     const value = this.value;
 
-    if (!value || !featureImages[value]) {
+    if (!value) {
       imgEl.style.display = "none";
       imgEl.src = "";
       imgEl.alt = "";
       return;
     }
 
-    const feature = featureImages[value];
-    imgEl.src = feature.src;
-    imgEl.alt = feature.alt;
-    imgEl.style.display = "block";
+    // If we already have an image saved for this feature, show it
+    if (featureImages[value]) {
+      imgEl.src = featureImages[value];
+      imgEl.alt = selectEl.options[selectEl.selectedIndex].text;
+      imgEl.style.display = "block";
+      return;
+    }
+
+    // Otherwise, ask the user to upload a photo for this feature
+    fileInput.click();
+  });
+
+  // When user picks a file
+  fileInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (!file) return;
+
+    const value = selectEl.value;
+    if (!value) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      // Save the image data for this feature
+      featureImages[value] = e.target.result;
+
+      // Show the image
+      imgEl.src = e.target.result;
+      imgEl.alt = selectEl.options[selectEl.selectedIndex].text;
+      imgEl.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+
+    // Reset the input so user can upload again later if needed
+    this.value = "";
   });
 </script>
 
