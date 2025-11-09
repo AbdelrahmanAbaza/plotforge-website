@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PlotForge – Faster than Excel, Simpler than MATLAB</title>
 
-  <!-- Basic SEO -->
   <meta name="description" content="PlotForge is an engineer-friendly data analysis tool for CSV & Excel. Faster than Excel, simpler than MATLAB – with interactive plots, region statistics, and export-ready reports.">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="PlotForge – Smarter CSV & Excel Analysis">
-  <meta property="og:description" content="Interactive data analysis for engineers. Compare signals, analyse regions, and export results faster than Excel, simpler than MATLAB.">
-  <meta property="og:type" content="website">
 
   <style>
     :root {
-      --primary: #3b3b3b;      /* Charcoal gray for header and accents */
-      --primary-soft: #ebebeb; /* Light gray backgrounds */
-      --accent: #ff7b00;       /* Cheerful bright orange */
+      --primary: #3b3b3b;       /* charcoal gray */
+      --primary-soft: #ebebeb;  /* light gray backgrounds */
+      --accent: #ff7b00;        /* cheerful orange */
       --bg: #f7f7f7;
       --text: #333333;
       --muted: #777777;
@@ -33,7 +27,6 @@
       color: var(--text);
       margin: 0;
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
 
     header {
@@ -136,6 +129,27 @@
       color: var(--primary);
     }
 
+    /* 🔶 More visible license button */
+    .cta-secondary-alt {
+      display: inline-block;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: #ffffff;
+      padding: 0.8rem 1.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      box-shadow: 0 1px 6px rgba(255, 123, 0, 0.25);
+      transition: all 0.2s ease;
+    }
+    .cta-secondary-alt:hover {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(255, 123, 0, 0.35);
+      transform: translateY(-1px);
+    }
+
     .cta-summary {
       display: inline-block;
       margin-top: 1rem;
@@ -149,28 +163,6 @@
       transition: 0.15s ease;
     }
     .cta-summary:hover { opacity: 0.9; transform: translateY(-1px); }
-
-    .cta-secondary-alt {
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      background: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .cta-secondary-alt:hover {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
-    }
 
     .pill-list {
       display: flex;
@@ -302,12 +294,6 @@
     <option value="feature3">Live Cursor Readout</option>
     <option value="feature4">Axis Limits &amp; Zoom Control</option>
     <option value="feature5">Live Zone Statistics</option>
-    <option value="feature6">Reference X &amp; Y Lines</option>
-    <option value="feature7">Region Marking &amp; Highlighting</option>
-    <option value="feature8">Focused Data Export</option>
-    <option value="feature9">Multiple Y-Axes on a Single Plot</option>
-    <option value="feature10">Quick Analysis Toolbar</option>
-    <option value="feature11">Saving &amp; Loading Sessions</option>
   </select>
 
   <div id="feature-content">
@@ -352,8 +338,8 @@
 
 <script>
   const featureContent = {
-    feature1:{text:"<strong>Single Plots</strong><br><br>Quickly visualise an individual signal from your CSV or Excel file.",img1:{src:"Images/feature1-single-plots.png",alt:"Single Plots"},img2:{src:"Images/feature1-single-plots-2.png",alt:"Zoomed view"}},
-    feature2:{text:"<strong>Multiple Plots</strong><br><br>Overlay several signals on a shared X-axis to compare trends.",img1:{src:"Images/feature2-multiple-plots.png",alt:"Multiple Plots overview"}},
+    feature1:{text:"<strong>Single Plots</strong><br><br>Quickly visualise an individual signal from your CSV or Excel file.",img1:{src:"Images/feature1-single-plots.png",alt:"Single Plots"}},
+    feature2:{text:"<strong>Multiple Plots</strong><br><br>Overlay several signals on a shared X-axis to compare trends.",img1:{src:"Images/feature2-multiple-plots.png",alt:"Multiple Plots"}},
     feature3:{text:"<strong>Live Cursor Readout</strong><br><br>Inspect exact X/Y values across traces simultaneously.",img1:{src:"Images/feature3-live-cursor.png",alt:"Live Cursor"}},
     feature4:{text:"<strong>Axis Limits & Zoom</strong><br><br>Focus on the region that matters by adjusting axis limits.",img1:{src:"Images/feature4-axis-limits.png",alt:"Axis Limits"}},
     feature5:{text:"<strong>Live Zone Statistics</strong><br><br>Compute min, max, delta, and average instantly.",img1:{src:"Images/feature5-live-zone-stats.png",alt:"Zone Stats"}}
