@@ -92,8 +92,24 @@
     max-width: 400px;
   }
 
-  #loom-feature-image {
+  /* Feature content (paragraph + images) */
+  #loom-feature-content {
     margin-top: 1.5rem;
+  }
+
+  #loom-feature-text {
+    margin-bottom: 1rem;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  #loom-feature-text.visible {
+    opacity: 1;
+  }
+
+  .loom-feature-media {
+    display: block;
+    margin-top: 1rem;
     max-width: 100%;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.12);
@@ -101,7 +117,7 @@
     transition: opacity 0.4s ease-in-out;
   }
 
-  #loom-feature-image.visible {
+  .loom-feature-media.visible {
     opacity: 1;
   }
 </style>
@@ -140,10 +156,10 @@
   </a>
 </section>
 
-<!-- ✅ Static features dropdown with pre-assigned images -->
+<!-- ✅ Static features dropdown with paragraph + two images -->
 <section>
   <h2>🧩 PlotForge Features</h2>
-  <p>Select a feature from the list to see its screenshot.</p>
+  <p>Select a feature from the list to see its description and screenshots.</p>
 
   <label for="loom-feature-select"><strong>Features:</strong></label><br>
   <select id="loom-feature-select" class="loom-select">
@@ -160,8 +176,10 @@
     <option value="feature10">Feature 10 – Keyboard Shortcuts</option>
   </select>
 
-  <div id="loom-feature-image-wrapper">
-    <img id="loom-feature-image" src="" alt="">
+  <div id="loom-feature-content">
+    <p id="loom-feature-text"></p>
+    <img id="loom-feature-image1" class="loom-feature-media" src="" alt="">
+    <img id="loom-feature-image2" class="loom-feature-media" src="" alt="">
   </div>
 </section>
 
@@ -187,40 +205,102 @@
 
 <!-- ✅ Script -->
 <script>
-  // ✅ Use "Images/" folder — update filenames to match your actual files
-  const featureImages = {
-    feature1: { src: "Images/feature1-single-plots.png", alt: "Single Plots" },
-    feature2: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots" },
-    feature3: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor" },
-    feature4: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits Modification" },
-    feature5: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone Statistics" },
-    feature6: { src: "Images/feature6-data-export.png", alt: "Data Export" },
-    feature7: { src: "Images/feature7-region-marking.png", alt: "Region Marking" },
-    feature8: { src: "Images/feature8-data-export-2.png", alt: "Data Export (Alt)" },
-    feature9: { src: "Images/feature9-saving-session.png", alt: "Saving Session" },
-    feature10: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts" }
+  // Each feature now has: text + two images
+  // 🔧 Update the text and image paths to match your actual content/files
+  const featureContent = {
+    feature1: {
+      text: "Single Plots lets you quickly visualise a single signal from your CSV or Excel file, ideal for sanity checks and quick inspections.",
+      img1: { src: "Images/feature1-single-plots.png", alt: "Single Plots – basic view" },
+      img2: { src: "Images/feature1-single-plots-2.png", alt: "Single Plots – zoomed and annotated" }
+    },
+    feature2: {
+      text: "Multiple Plots allows you to overlay several Y-series on a shared X-axis, making it easy to compare signals and spot correlations.",
+      img1: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots – overlay of signals" },
+      img2: { src: "Images/feature2-multiple-plots-2.png", alt: "Multiple Plots – with legend and markers" }
+    },
+    feature3: {
+      text: "The Live Cursor shows precise values at any point on the plot, helping you read off exact measurements and cross-check results.",
+      img1: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor – value readout" },
+      img2: { src: "Images/feature3-live-cursor-2.png", alt: "Live Cursor – multiple traces" }
+    },
+    feature4: {
+      text: "Axis Limits Modification gives you full control over zoom and scale so you can focus on the ranges that matter.",
+      img1: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits – manual adjustments" },
+      img2: { src: "Images/feature4-axis-limits-2.png", alt: "Axis Limits – focused zoom" }
+    },
+    feature5: {
+      text: "Live Zone Statistics let you drag a region and instantly see Min, Max, Δ and Average for that segment of data.",
+      img1: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone – statistics overlay" },
+      img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – multiple regions" }
+    },
+    feature6: {
+      text: "Data Export makes it easy to send selected regions or full plots to CSV or image files for reports and documentation.",
+      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV dialog" },
+      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image export" }
+    },
+    feature7: {
+      text: "Region Marking lets you highlight key intervals, annotate them, and keep track of events or test phases in your dataset.",
+      img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – highlighted interval" },
+      img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – multiple labels" }
+    },
+    feature8: {
+      text: "Additional Data Export options give you more control over what to export, including filters and custom ranges.",
+      img1: { src: "Images/feature8-data-export-2.png", alt: "Advanced Data Export options" },
+      img2: { src: "Images/feature8-data-export-3.png", alt: "Export configuration dialog" }
+    },
+    feature9: {
+      text: "Saving Session keeps your plots, settings, and zones so you can resume your analysis exactly where you left off.",
+      img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
+      img2: { src: "Images/feature9-saving-session-2.png", alt: "Reopened session view" }
+    },
+    feature10: {
+      text: "Keyboard Shortcuts speed up your workflow with quick actions for zooming, panning, toggling traces, and more.",
+      img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts – help overlay" },
+      img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Keyboard Shortcuts in action" }
+    }
   };
 
   const selectEl = document.getElementById("loom-feature-select");
-  const imgEl = document.getElementById("loom-feature-image");
+  const textEl = document.getElementById("loom-feature-text");
+  const img1El = document.getElementById("loom-feature-image1");
+  const img2El = document.getElementById("loom-feature-image2");
 
   selectEl.addEventListener("change", function () {
     const value = this.value;
 
-    if (!value || !featureImages[value]) {
-      imgEl.classList.remove("visible");
-      imgEl.src = "";
-      imgEl.alt = "";
+    if (!value || !featureContent[value]) {
+      textEl.classList.remove("visible");
+      img1El.classList.remove("visible");
+      img2El.classList.remove("visible");
+
+      textEl.textContent = "";
+      img1El.src = "";
+      img1El.alt = "";
+      img2El.src = "";
+      img2El.alt = "";
       return;
     }
 
-    const feature = featureImages[value];
-    imgEl.classList.remove("visible");
+    const feature = featureContent[value];
+
+    // Remove visibility to re-trigger fade-in
+    textEl.classList.remove("visible");
+    img1El.classList.remove("visible");
+    img2El.classList.remove("visible");
+
     // brief delay to make fade smoother
     setTimeout(() => {
-      imgEl.src = feature.src;
-      imgEl.alt = feature.alt;
-      imgEl.classList.add("visible");
+      textEl.textContent = feature.text;
+
+      img1El.src = feature.img1.src;
+      img1El.alt = feature.img1.alt;
+
+      img2El.src = feature.img2.src;
+      img2El.alt = feature.img2.alt;
+
+      textEl.classList.add("visible");
+      img1El.classList.add("visible");
+      img2El.classList.add("visible");
     }, 150);
   });
 </script>
