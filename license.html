@@ -19,6 +19,21 @@
     text-align: center;
   }
   h1 { margin-bottom: 0.3rem; }
+
+  nav {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #004aad;
+    font-weight: 600;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+
   section {
     padding: 2rem;
     max-width: 900px;
@@ -28,22 +43,28 @@
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
+
   .cta {
     display: inline-block;
     margin-top: 1rem;
-    background: #d3d3d3; /* Grey button */
-    color: black;
+    background: #004aad; /* Consistent blue button */
+    color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
   }
+  .cta:hover {
+    background: #003b8e;
+  }
+
   footer {
     text-align: center;
     padding: 2rem;
     font-size: 0.9em;
     color: #777;
   }
+
   table {
     width: 100%;
     border-collapse: collapse;
@@ -59,7 +80,13 @@
   th {
     background-color: #f2f2f2;
   }
-  /* Styling email link to look like in the image (blue, underlined) */
+
+  /* Make table scrollable on small screens */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  /* Email link styling */
   a.email-link {
     color: #1a73e8; /* Blue color */
     text-decoration: underline;
@@ -70,54 +97,65 @@
 
 <header>
   <h1>PlotForge License</h1>
-  <p>Choose your desired license plan</p>
+  <p>Select the license plan that best fits your needs.</p>
 </header>
+
+<!-- Navigation (same style as main website) -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="information.html#purpose">Purpose</a>
+  <a href="information.html#objectives">Objectives</a>
+</nav>
 
 <section>
   <h2>💼 License Plans</h2>
-  <p>We offer flexible license options for all your needs. Below are the available plans:</p>
+  <p>We offer flexible license options designed to meet the needs of individuals, teams, and businesses.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>License Type</th>
-        <th>Duration</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Individual</td>
-        <td>1 Month</td>
-        <td>$29.99</td>
-      </tr>
-      <tr>
-        <td>Team</td>
-        <td>3 Months</td>
-        <td>$79.99</td>
-      </tr>
-      <tr>
-        <td>Business</td>
-        <td>6 Months</td>
-        <td>$149.99</td>
-      </tr>
-      <tr>
-        <td>Enterprise</td>
-        <td>1 Year</td>
-        <td>$249.99</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>License Type</th>
+          <th>Duration</th>
+          <th>Price (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Individual</td>
+          <td>1 Month</td>
+          <td>$29.99</td>
+        </tr>
+        <tr>
+          <td>Team</td>
+          <td>3 Months</td>
+          <td>$79.99</td>
+        </tr>
+        <tr>
+          <td>Business</td>
+          <td>6 Months</td>
+          <td>$149.99</td>
+        </tr>
+        <tr>
+          <td>Enterprise</td>
+          <td>1 Year</td>
+          <td>$249.99</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <p>If you're ready to get started or need more information, don't hesitate to contact us.</p>
+  <p>If you’re ready to get started or need more information, we’re happy to help.</p>
 
-  <!-- Showing Email without "Contact Us for License" -->
-  <h3>Contact Us</h3>
+  <a href="mailto:sales@plotforge.io" class="cta">Request a License</a>
+
+  <h3 style="margin-top: 2rem;">Contact Us</h3>
   <p>Email: <a href="mailto:sales@plotforge.io" class="email-link">sales@plotforge.io</a></p>
 </section>
 
 <footer>
-  © 2025 PlotForge | Built by Abdelrahman Abaza
+  © 2025 PlotForge | Built Abdelrahman Abaza
 </footer>
 
 </body>
