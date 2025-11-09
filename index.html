@@ -178,6 +178,7 @@
     <p id="feature-text"></p>
     <img id="feature-image1" class="feature-media" src="" alt="">
     <img id="feature-image2" class="feature-media" src="" alt="">
+    <img id="feature-image3" class="feature-media" src="" alt="">
   </div>
 </section>
 
@@ -234,13 +235,18 @@
       img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – comparison" }
     },
     feature6: {
-      text: `<strong>Add X and Y Lines</strong><br><br>
-        Add customizable X and Y reference lines to your plots to mark thresholds, limits, or events.<br><br>
-        • Add constant lines for limits or setpoints<br>
-        • Highlight crossings and intersections<br>
-        • Color and label lines for clarity`,
-      img1: { src: "Images/feature6-add-lines.png", alt: "X/Y Lines – horizontal and vertical reference lines" },
-      img2: { src: "Images/feature6-add-lines-2.png", alt: "X/Y Lines – labeled threshold markers" }
+      text: `
+        <strong>Add X and Y Lines</strong><br><br>
+        Users can add X, Y, or combined X–Y lines to any subplot by right double-clicking, as illustrated in the first two images below.
+        This action opens a configuration dialog allowing users to input the desired X and/or Y values for precise reference placement.<br><br>
+        Multiple reference lines can be added independently on each subplot to highlight different data regions or thresholds,
+        as demonstrated in the third image below.<br><br>
+        <em>Note:</em> PlotForge supports <strong>Ctrl + Z</strong> (Undo) and <strong>Ctrl + Y</strong> (Redo) for this feature,
+        allowing users to easily revert or reapply line additions and modifications.
+      `,
+      img1: { src: "Images/feature6-add-lines.png", alt: "Adding X/Y lines – example window" },
+      img2: { src: "Images/feature6-add-lines-2.png", alt: "Adding X/Y lines – value input dialog" },
+      img3: { src: "Images/feature6-add-lines-3.png", alt: "Multiple X/Y lines across subplots" }
     },
     feature7: {
       text: `<strong>Region Marking & Highlighting</strong><br><br>
@@ -278,24 +284,29 @@
   const textEl = document.getElementById("feature-text");
   const img1El = document.getElementById("feature-image1");
   const img2El = document.getElementById("feature-image2");
+  const img3El = document.getElementById("feature-image3");
 
   selectEl.addEventListener("change", function () {
     const value = this.value;
-    if (!value || !featureContent[value]) {
+    const f = featureContent[value];
+    if (!value || !f) {
       textEl.innerHTML = "";
-      img1El.src = "";
-      img2El.src = "";
+      img1El.src = img2El.src = img3El.src = "";
       return;
     }
-    const f = featureContent[value];
+
     textEl.innerHTML = f.text;
-    img1El.src = f.img1.src;
-    img1El.alt = f.img1.alt;
-    img2El.src = f.img2.src;
-    img2El.alt = f.img2.alt;
+    img1El.src = f.img1?.src || "";
+    img1El.alt = f.img1?.alt || "";
+    img2El.src = f.img2?.src || "";
+    img2El.alt = f.img2?.alt || "";
+    img3El.src = f.img3?.src || "";
+    img3El.alt = f.img3?.alt || "";
+
     textEl.classList.add("visible");
     img1El.classList.add("visible");
     img2El.classList.add("visible");
+    img3El.classList.add("visible");
   });
 </script>
 
