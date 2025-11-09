@@ -80,7 +80,9 @@
     color: #004aad;
     font-weight: 600;
   }
-  .loom-select {
+
+  /* Dropdown styles */
+  .feature-select {
     margin-top: 1rem;
     padding: 0.6rem 0.8rem;
     border-radius: 8px;
@@ -89,18 +91,23 @@
     width: 100%;
     max-width: 400px;
   }
-  #loom-feature-content {
+
+  /* Feature content */
+  #feature-content {
     margin-top: 1.5rem;
   }
-  #loom-feature-text {
+
+  #feature-text {
     margin-bottom: 1rem;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
   }
-  #loom-feature-text.visible {
+
+  #feature-text.visible {
     opacity: 1;
   }
-  .loom-feature-media {
+
+  .feature-media {
     display: block;
     margin-top: 1rem;
     max-width: 100%;
@@ -109,7 +116,8 @@
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
   }
-  .loom-feature-media.visible {
+
+  .feature-media.visible {
     opacity: 1;
   }
 </style>
@@ -142,32 +150,35 @@
   </ul>
 
   <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe" class="cta">Download Free 14-Day Trial</a>
-  <a href="license.html" class="cta-secondary">Already tried? Want to get a license?</a>
+
+  <a href="license.html" class="cta-secondary">
+    Already tried? Want to get a license?
+  </a>
 </section>
 
 <section>
   <h2>🧩 PlotForge Features</h2>
   <p>Select a feature from the list to see its description and screenshots.</p>
 
-  <label for="loom-feature-select"><strong>Features:</strong></label><br>
-  <select id="loom-feature-select" class="loom-select">
+  <label for="feature-select"><strong>Features:</strong></label><br>
+  <select id="feature-select" class="feature-select">
     <option value="">-- Please choose a feature --</option>
     <option value="feature1">Feature 1 – Single Plots</option>
     <option value="feature2">Feature 2 – Multiple Plots</option>
     <option value="feature3">Feature 3 – Live Cursor</option>
     <option value="feature4">Feature 4 – Axis Limits Modification</option>
     <option value="feature5">Feature 5 – Live Zone Statistics</option>
-    <option value="feature6">Feature 6 – Data Export</option>
-    <option value="feature7">Feature 7 – Advanced Data Export</option>
-    <option value="feature8">Feature 8 – Region Marking</option>
+    <option value="feature6">Feature 6 – Region Marking & Highlighting</option>
+    <option value="feature7">Feature 7 – Data Export</option>
+    <option value="feature8">Feature 8 – Quick Analysis Features</option>
     <option value="feature9">Feature 9 – Saving Session</option>
     <option value="feature10">Feature 10 – Keyboard Shortcuts</option>
   </select>
 
-  <div id="loom-feature-content">
-    <p id="loom-feature-text"></p>
-    <img id="loom-feature-image1" class="loom-feature-media" src="" alt="">
-    <img id="loom-feature-image2" class="loom-feature-media" src="" alt="">
+  <div id="feature-content">
+    <p id="feature-text"></p>
+    <img id="feature-image1" class="feature-media" src="" alt="">
+    <img id="feature-image2" class="feature-media" src="" alt="">
   </div>
 </section>
 
@@ -194,104 +205,138 @@
 <script>
   const featureContent = {
     feature1: {
-      text: `<strong>Single Plots</strong><br><br>
+      text: `
+        <strong>Single Plots</strong><br><br>
         The Single Plots feature allows you to quickly visualize an individual signal from your CSV or Excel file.<br><br>
-        <strong>To generate a plot in PlotForge, follow the steps below:</strong><br><br>
         1. Click “Browse” to select your file.<br>
         2. Choose X and Y axes.<br>
-        3. Click “Plot All” to display your plot.`,
+        3. Click “Plot All” to display your plot.
+      `,
       img1: { src: "Images/feature1-single-plots.png", alt: "Single Plots – basic view" },
       img2: { src: "Images/feature1-single-plots-2.png", alt: "Single Plots – zoomed and annotated" }
     },
     feature2: {
-      text: `<strong>Multiple Plots</strong><br><br>
+      text: `
+        <strong>Multiple Plots</strong><br><br>
         Multiple Plots allows you to overlay several Y-series on a shared X-axis, making it easy to compare signals and spot correlations.<br><br>
-        This is ideal for:<br>
+        Ideal for:<br>
         • Comparing sensor channels<br>
-        • Verifying control signals against outputs<br>
-        • Visualising test cases side by side`,
+        • Verifying control signals<br>
+        • Visualising test cases side by side.
+      `,
       img1: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots – overlay of signals" },
       img2: { src: "Images/feature2-multiple-plots-2.png", alt: "Multiple Plots – with legend and markers" }
     },
     feature3: {
-      text: `<strong>Live Cursor</strong><br><br>
-        The Live Cursor shows precise values at any point on the plot, helping you read off exact measurements and cross-check results.<br><br>
-        Hover to see:<br>• X/Y values<br>• Values across multiple signals at the same X.`,
+      text: `
+        <strong>Live Cursor</strong><br><br>
+        The Live Cursor shows precise values at any point on the plot, helping you read off exact measurements and compare multiple traces.
+      `,
       img1: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor – value readout" },
       img2: { src: "Images/feature3-live-cursor-2.png", alt: "Live Cursor – multiple traces" }
     },
     feature4: {
-      text: `<strong>Axis Limits Modification</strong><br><br>
-        Axis Limits Modification gives you full control over zoom and scale.<br><br>
-        You can:<br>• Enter custom min/max<br>• Reset autoscale<br>• Zoom specific regions.`,
+      text: `
+        <strong>Axis Limits Modification</strong><br><br>
+        Axis Limits Modification gives you complete control over zoom and scale so you can focus on what matters most.
+      `,
       img1: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits – manual adjustments" },
       img2: { src: "Images/feature4-axis-limits-2.png", alt: "Axis Limits – focused zoom" }
     },
     feature5: {
-      text: `<strong>Live Zone Statistics</strong><br><br>
-        Live Zone Statistics let you drag a region and instantly see metrics for that segment.<br><br>
-        You can view:<br>• Min/Max<br>• Delta<br>• Average value.`,
+      text: `
+        <strong>Live Zone Statistics</strong><br><br>
+        Drag a region and instantly see key statistics: min, max, delta, and average values — computed live.
+      `,
       img1: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone – statistics overlay" },
       img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – multiple regions" }
     },
     feature6: {
-      text: `<strong>Data Export</strong><br><br>
-        Data Export makes it easy to send selected regions or full plots to external formats.<br><br>
-        Export:<br>• Numeric data to CSV<br>• Plot images for reports.`,
-      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV dialog" },
-      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image export" }
-    },
-    feature7: {
-      text: `<strong>Advanced Data Export</strong><br><br>
-        Additional Data Export options give you more control over what you export, including filters and ranges.<br><br>
-        Configure export to:<br>• Limit channels<br>• Apply time/value ranges<br>• Match reporting formats.`,
-      img1: { src: "Images/feature8-data-export-2.png", alt: "Advanced Data Export options" },
-      img2: { src: "Images/feature8-data-export-3.png", alt: "Export configuration dialog" }
-    },
-    feature8: {
-      text: `<strong>Region Marking</strong><br><br>
-        Region Marking lets you highlight key intervals, annotate them, and track events or phases.<br><br>
-        Use it to:<br>• Mark startup/shutdown<br>• Tag anomalies<br>• Separate test scenarios.`,
+      text: `
+        <strong>Region Marking & Highlighting</strong><br><br>
+        Highlight key intervals, annotate them, and mark events for testing or QA. Perfect for:<br>
+        • Startup/shutdown segments<br>
+        • Fault tagging<br>
+        • Marking different test phases.
+      `,
       img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – highlighted interval" },
       img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – multiple labels" }
     },
+    feature7: {
+      text: `
+        <strong>Data Export</strong><br><br>
+        Export numeric data or images to share insights. Advanced export lets you select specific channels or ranges and match reporting formats.
+      `,
+      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV dialog" },
+      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image export" }
+    },
+    feature8: {
+      text: `
+        <strong>Quick Analysis Features</strong><br><br>
+        Accelerate your workflow with built-in quick tools:<br>
+        • One-click statistics<br>
+        • Automatic range detection<br>
+        • Comparison overlays<br>
+        • Instant region-based calculations.
+      `,
+      img1: { src: "Images/feature8-quick-analysis.png", alt: "Quick Analysis – example view" },
+      img2: { src: "Images/feature8-quick-analysis-2.png", alt: "Quick Analysis – overlay demo" }
+    },
     feature9: {
-      text: `<strong>Saving Session</strong><br><br>
-        Saving Session keeps your plots and zones so you can resume exactly where you left off.`,
+      text: `
+        <strong>Saving Session</strong><br><br>
+        Save your workspace with all plots, zones, and settings — and reopen it anytime to resume analysis exactly where you left off.
+      `,
       img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
       img2: { src: "Images/feature9-saving-session-2.png", alt: "Reopened session view" }
     },
     feature10: {
-      text: `<strong>Keyboard Shortcuts</strong><br><br>
-        Keyboard Shortcuts speed up your workflow with quick actions for zooming, panning, and toggling traces.`,
+      text: `
+        <strong>Keyboard Shortcuts</strong><br><br>
+        Speed up your work using intuitive shortcuts for zooming, panning, and toggling signals.
+      `,
       img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts – help overlay" },
       img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Keyboard Shortcuts in action" }
     }
   };
 
-  const selectEl = document.getElementById("loom-feature-select");
-  const textEl = document.getElementById("loom-feature-text");
-  const img1El = document.getElementById("loom-feature-image1");
-  const img2El = document.getElementById("loom-feature-image2");
+  const selectEl = document.getElementById("feature-select");
+  const textEl = document.getElementById("feature-text");
+  const img1El = document.getElementById("feature-image1");
+  const img2El = document.getElementById("feature-image2");
 
   selectEl.addEventListener("change", function () {
     const value = this.value;
+
     if (!value || !featureContent[value]) {
+      textEl.classList.remove("visible");
+      img1El.classList.remove("visible");
+      img2El.classList.remove("visible");
+
       textEl.innerHTML = "";
       img1El.src = "";
       img2El.src = "";
       return;
     }
+
     const feature = featureContent[value];
-    textEl.innerHTML = feature.text;
-    img1El.src = feature.img1.src;
-    img1El.alt = feature.img1.alt;
-    img2El.src = feature.img2.src;
-    img2El.alt = feature.img2.alt;
-    textEl.classList.add("visible");
-    img1El.classList.add("visible");
-    img2El.classList.add("visible");
+
+    textEl.classList.remove("visible");
+    img1El.classList.remove("visible");
+    img2El.classList.remove("visible");
+
+    setTimeout(() => {
+      textEl.innerHTML = feature.text;
+      img1El.src = feature.img1.src;
+      img1El.alt = feature.img1.alt;
+      img2El.src = feature.img2.src;
+      img2El.alt = feature.img2.alt;
+      textEl.classList.add("visible");
+      img1El.classList.add("visible");
+      img2El.classList.add("visible");
+    }, 150);
   });
 </script>
+
 </body>
 </html>
