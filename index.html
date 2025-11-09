@@ -81,7 +81,6 @@
     font-weight: 600;
   }
 
-  /* Dropdown styles */
   .feature-select {
     margin-top: 1rem;
     padding: 0.6rem 0.8rem;
@@ -92,7 +91,6 @@
     max-width: 400px;
   }
 
-  /* Feature content */
   #feature-content {
     margin-top: 1.5rem;
   }
@@ -168,11 +166,12 @@
     <option value="feature3">Feature 3 – Live Cursor</option>
     <option value="feature4">Feature 4 – Axis Limits Modification</option>
     <option value="feature5">Feature 5 – Live Zone Statistics</option>
-    <option value="feature6">Feature 6 – Region Marking & Highlighting</option>
-    <option value="feature7">Feature 7 – Data Export</option>
-    <option value="feature8">Feature 8 – Quick Analysis Features</option>
-    <option value="feature9">Feature 9 – Saving Session</option>
-    <option value="feature10">Feature 10 – Keyboard Shortcuts</option>
+    <option value="feature6">Feature 6 – Add X and Y Lines</option>
+    <option value="feature7">Feature 7 – Region Marking & Highlighting</option>
+    <option value="feature8">Feature 8 – Data Export</option>
+    <option value="feature9">Feature 9 – Quick Analysis Features</option>
+    <option value="feature10">Feature 10 – Saving Session</option>
+    <option value="feature11">Feature 11 – Keyboard Shortcuts</option>
   </select>
 
   <div id="feature-content">
@@ -205,98 +204,73 @@
 <script>
   const featureContent = {
     feature1: {
-      text: `
-        <strong>Single Plots</strong><br><br>
-        The Single Plots feature allows you to quickly visualize an individual signal from your CSV or Excel file.<br><br>
-        1. Click “Browse” to select your file.<br>
-        2. Choose X and Y axes.<br>
-        3. Click “Plot All” to display your plot.
-      `,
+      text: `<strong>Single Plots</strong><br><br>
+        Quickly visualize an individual signal from your CSV or Excel file using the Single Plots tool.`,
       img1: { src: "Images/feature1-single-plots.png", alt: "Single Plots – basic view" },
-      img2: { src: "Images/feature1-single-plots-2.png", alt: "Single Plots – zoomed and annotated" }
+      img2: { src: "Images/feature1-single-plots-2.png", alt: "Single Plots – zoomed view" }
     },
     feature2: {
-      text: `
-        <strong>Multiple Plots</strong><br><br>
-        Multiple Plots allows you to overlay several Y-series on a shared X-axis, making it easy to compare signals and spot correlations.<br><br>
-        Ideal for:<br>
-        • Comparing sensor channels<br>
-        • Verifying control signals<br>
-        • Visualising test cases side by side.
-      `,
-      img1: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots – overlay of signals" },
-      img2: { src: "Images/feature2-multiple-plots-2.png", alt: "Multiple Plots – with legend and markers" }
+      text: `<strong>Multiple Plots</strong><br><br>
+        Overlay several Y-series on a shared X-axis to compare signals and correlations.`,
+      img1: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots – overview" },
+      img2: { src: "Images/feature2-multiple-plots-2.png", alt: "Multiple Plots – comparison view" }
     },
     feature3: {
-      text: `
-        <strong>Live Cursor</strong><br><br>
-        The Live Cursor shows precise values at any point on the plot, helping you read off exact measurements and compare multiple traces.
-      `,
-      img1: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor – value readout" },
-      img2: { src: "Images/feature3-live-cursor-2.png", alt: "Live Cursor – multiple traces" }
+      text: `<strong>Live Cursor</strong><br><br>
+        Inspect exact X/Y values across multiple traces simultaneously using a live cursor.`,
+      img1: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor – readout" },
+      img2: { src: "Images/feature3-live-cursor-2.png", alt: "Live Cursor – multiple plots" }
     },
     feature4: {
-      text: `
-        <strong>Axis Limits Modification</strong><br><br>
-        Axis Limits Modification gives you complete control over zoom and scale so you can focus on what matters most.
-      `,
-      img1: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits – manual adjustments" },
-      img2: { src: "Images/feature4-axis-limits-2.png", alt: "Axis Limits – focused zoom" }
+      text: `<strong>Axis Limits Modification</strong><br><br>
+        Adjust and zoom in on specific data ranges by customizing axis limits.`,
+      img1: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits – manual" },
+      img2: { src: "Images/feature4-axis-limits-2.png", alt: "Axis Limits – zoom" }
     },
     feature5: {
-      text: `
-        <strong>Live Zone Statistics</strong><br><br>
-        Drag a region and instantly see key statistics: min, max, delta, and average values — computed live.
-      `,
-      img1: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone – statistics overlay" },
-      img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – multiple regions" }
+      text: `<strong>Live Zone Statistics</strong><br><br>
+        Instantly compute min, max, delta, and average values by dragging a selection zone.`,
+      img1: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone – stats" },
+      img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – comparison" }
     },
     feature6: {
-      text: `
-        <strong>Region Marking & Highlighting</strong><br><br>
-        Highlight key intervals, annotate them, and mark events for testing or QA. Perfect for:<br>
-        • Startup/shutdown segments<br>
-        • Fault tagging<br>
-        • Marking different test phases.
-      `,
-      img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – highlighted interval" },
-      img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – multiple labels" }
+      text: `<strong>Add X and Y Lines</strong><br><br>
+        Add customizable X and Y reference lines to your plots to mark thresholds, limits, or events.<br><br>
+        • Add constant lines for limits or setpoints<br>
+        • Highlight crossings and intersections<br>
+        • Color and label lines for clarity`,
+      img1: { src: "Images/feature6-add-lines.png", alt: "X/Y Lines – horizontal and vertical reference lines" },
+      img2: { src: "Images/feature6-add-lines-2.png", alt: "X/Y Lines – labeled threshold markers" }
     },
     feature7: {
-      text: `
-        <strong>Data Export</strong><br><br>
-        Export numeric data or images to share insights. Advanced export lets you select specific channels or ranges and match reporting formats.
-      `,
-      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV dialog" },
-      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image export" }
+      text: `<strong>Region Marking & Highlighting</strong><br><br>
+        Highlight key time intervals, tag anomalies, or separate test phases.`,
+      img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – highlight" },
+      img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – multiple" }
     },
     feature8: {
-      text: `
-        <strong>Quick Analysis Features</strong><br><br>
-        Accelerate your workflow with built-in quick tools:<br>
-        • One-click statistics<br>
-        • Automatic range detection<br>
-        • Comparison overlays<br>
-        • Instant region-based calculations.
-      `,
-      img1: { src: "Images/feature8-quick-analysis.png", alt: "Quick Analysis – example view" },
-      img2: { src: "Images/feature8-quick-analysis-2.png", alt: "Quick Analysis – overlay demo" }
+      text: `<strong>Data Export</strong><br><br>
+        Export numeric data or images easily. Advanced export options include filtering channels and selecting time ranges.`,
+      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV" },
+      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image" }
     },
     feature9: {
-      text: `
-        <strong>Saving Session</strong><br><br>
-        Save your workspace with all plots, zones, and settings — and reopen it anytime to resume analysis exactly where you left off.
-      `,
-      img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
-      img2: { src: "Images/feature9-saving-session-2.png", alt: "Reopened session view" }
+      text: `<strong>Quick Analysis Features</strong><br><br>
+        Perform rapid evaluations with built-in functions like overlay comparison and auto-statistics.`,
+      img1: { src: "Images/feature8-quick-analysis.png", alt: "Quick Analysis – demo" },
+      img2: { src: "Images/feature8-quick-analysis-2.png", alt: "Quick Analysis – overlay" }
     },
     feature10: {
-      text: `
-        <strong>Keyboard Shortcuts</strong><br><br>
-        Speed up your work using intuitive shortcuts for zooming, panning, and toggling signals.
-      `,
-      img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts – help overlay" },
-      img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Keyboard Shortcuts in action" }
+      text: `<strong>Saving Session</strong><br><br>
+        Save your workspace, including all plots and annotations, to resume later.`,
+      img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
+      img2: { src: "Images/feature9-saving-session-2.png", alt: "Saving Session – restored" }
+    },
+    feature11: {
+      text: `<strong>Keyboard Shortcuts</strong><br><br>
+        Boost productivity with shortcuts for zooming, panning, and toggling traces.`,
+      img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts – overview" },
+      img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Keyboard Shortcuts – in action" }
     }
   };
 
@@ -307,34 +281,21 @@
 
   selectEl.addEventListener("change", function () {
     const value = this.value;
-
     if (!value || !featureContent[value]) {
-      textEl.classList.remove("visible");
-      img1El.classList.remove("visible");
-      img2El.classList.remove("visible");
-
       textEl.innerHTML = "";
       img1El.src = "";
       img2El.src = "";
       return;
     }
-
-    const feature = featureContent[value];
-
-    textEl.classList.remove("visible");
-    img1El.classList.remove("visible");
-    img2El.classList.remove("visible");
-
-    setTimeout(() => {
-      textEl.innerHTML = feature.text;
-      img1El.src = feature.img1.src;
-      img1El.alt = feature.img1.alt;
-      img2El.src = feature.img2.src;
-      img2El.alt = feature.img2.alt;
-      textEl.classList.add("visible");
-      img1El.classList.add("visible");
-      img2El.classList.add("visible");
-    }, 150);
+    const f = featureContent[value];
+    textEl.innerHTML = f.text;
+    img1El.src = f.img1.src;
+    img1El.alt = f.img1.alt;
+    img2El.src = f.img2.src;
+    img2El.alt = f.img2.alt;
+    textEl.classList.add("visible");
+    img1El.classList.add("visible");
+    img2El.classList.add("visible");
   });
 </script>
 
