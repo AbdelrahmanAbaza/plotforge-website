@@ -15,8 +15,8 @@
 
   <style>
     :root {
-      --primary: #004aad;
-      --primary-soft: #e5efff;
+      --primary: #3b3b3b;
+      --primary-soft: #ebebeb;
       --accent: #ff6600;
       --bg: #f7f7f7;
       --text: #333333;
@@ -40,7 +40,7 @@
     }
 
     header {
-      background: linear-gradient(135deg, #00337a, #004aad);
+      background: linear-gradient(135deg, #2b2b2b, #3b3b3b);
       color: #ffffff;
       padding: 2.8rem 1.5rem 2.4rem;
       text-align: center;
@@ -132,7 +132,7 @@
     .cta:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-      background: #00337a;
+      background: #2b2b2b;
     }
 
     .cta-secondary {
@@ -160,6 +160,12 @@
       color: var(--primary);
       background: #ffffff;
       box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.94rem;
     }
 
     .cta-secondary-alt:hover {
@@ -178,6 +184,7 @@
       font-weight: 600;
       font-size: 0.98rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+      transition: transform 0.08s ease, opacity 0.08s ease;
     }
 
     .cta-summary:hover {
@@ -229,7 +236,7 @@
       border-radius: 999px;
       padding: 0.3rem 0.75rem;
       font-size: 0.85rem;
-      color: #123;
+      color: #222;
     }
 
     .two-column {
