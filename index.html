@@ -169,9 +169,10 @@
     <option value="feature6">Feature 6 – Add X and Y Lines</option>
     <option value="feature7">Feature 7 – Region Marking & Highlighting</option>
     <option value="feature8">Feature 8 – Data Export</option>
-    <option value="feature9">Feature 9 – Quick Analysis Features</option>
-    <option value="feature10">Feature 10 – Saving Session</option>
-    <option value="feature11">Feature 11 – Keyboard Shortcuts</option>
+    <option value="feature9">Feature 9 – Multiple Y-Axes on a Single Plot</option>
+    <option value="feature10">Feature 10 – Quick Analysis Features</option>
+    <option value="feature11">Feature 11 – Saving Session</option>
+    <option value="feature12">Feature 12 – Keyboard Shortcuts</option>
   </select>
 
   <div id="feature-content">
@@ -276,20 +277,33 @@
       img3: { src: "Images/feature8-data-export-3.png", alt: "Data Export – exported file confirmation" }
     },
     feature9: {
+      text: `
+        <strong>Multiple Y-Axes on a Single Plot</strong><br><br>
+        This feature allows multiple signals with different units or magnitudes to be displayed on a single plot by assigning them
+        to separate Y-axes while sharing a common X-axis. This is particularly useful when comparing related parameters that operate
+        on different scales, such as temperature, pressure, and flow rate.<br><br>
+        The user can associate each selected signal with its own Y-axis, configure axis labels and ranges, and visually assess the
+        relationships between variables without compromising resolution, as illustrated in the examples below.
+      `,
+      img1: { src: "Images/feature9-multiple-yaxes.png", alt: "Multiple Y-Axes – combined view on one plot" },
+      img2: { src: "Images/feature9-multiple-yaxes-2.png", alt: "Multiple Y-Axes – axis configuration and labels" },
+      img3: { src: "Images/feature9-multiple-yaxes-3.png", alt: "Multiple Y-Axes – comparison of signals with different scales" }
+    },
+    feature10: {
       text: `<strong>Quick Analysis Features</strong><br><br>
         Perform rapid evaluations with built-in functions such as overlay comparison, automatic statistics,
         and region-based calculations.`,
       img1: { src: "Images/feature8-quick-analysis.png", alt: "Quick Analysis – demo" },
       img2: { src: "Images/feature8-quick-analysis-2.png", alt: "Quick Analysis – overlay" }
     },
-    feature10: {
+    feature11: {
       text: `<strong>Saving Session</strong><br><br>
         Save your workspace, including all plots, regions, and annotations, so that you can resume your analysis
         at a later time without reconfiguring the view.`,
       img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
       img2: { src: "Images/feature9-saving-session-2.png", alt: "Saving Session – restored session" }
     },
-    feature11: {
+    feature12: {
       text: `<strong>Keyboard Shortcuts</strong><br><br>
         Boost productivity with keyboard shortcuts for zooming, panning, toggling traces, and other common actions,
         reducing the time spent on repetitive navigation.`,
