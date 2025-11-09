@@ -171,8 +171,7 @@
     <option value="feature8">Feature 8 – Data Export</option>
     <option value="feature9">Feature 9 – Multiple Y-Axes on a Single Plot</option>
     <option value="feature10">Feature 10 – Quick Analysis Features</option>
-    <option value="feature11">Feature 11 – Saving Session</option>
-    <option value="feature12">Feature 12 – Keyboard Shortcuts</option>
+    <option value="feature11">Feature 11 – Saving and Loading Sessions</option>
   </select>
 
   <div id="feature-content">
@@ -300,18 +299,13 @@
       img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Quick Analysis – overlay" }
     },
     feature11: {
-      text: `<strong>Saving Session</strong><br><br>
-        Save your workspace, including all plots, regions, and annotations, so that you can resume your analysis
-        at a later time without reconfiguring the view.`,
-      img1: { src: "Images/feature11-saving-session.png", alt: "Saving Session – dialog" },
-      img2: { src: "Images/feature11-saving-session-2.png", alt: "Saving Session – restored session" }
-    },
-    feature12: {
-      text: `<strong>Keyboard Shortcuts</strong><br><br>
-        Boost productivity with keyboard shortcuts for zooming, panning, toggling traces, and other common actions,
-        reducing the time spent on repetitive navigation.`,
-      img1: { src: "a.png", alt: "Keyboard Shortcuts – overview" },
-      img2: { src: "b.png", alt: "Keyboard Shortcuts – in action" }
+      text: `
+        <strong>Saving and Loading Sessions</strong><br><br>
+        In order to save the session, the user has to click File and Save (as shown in the first image below). This feature allows the user to save the session as a JSON file which can be loaded later (as shown in the second image below). In order for a successful reload of the session, the data file path has to be maintained and the user has to click File, Save and Load.
+      `,
+      img1: { src: "Images/feature11-saving-session.png", alt: "Saving Session – save dialog" },
+      img2: { src: "Images/feature11-saving-session-2.png", alt: "Loading Session – restored view" },
+      img3: { src: "Images/feature11-saving-session-3.png", alt: "Session Reload – full restoration example" }
     }
   };
 
