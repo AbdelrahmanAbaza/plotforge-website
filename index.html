@@ -238,43 +238,57 @@
       text: `
         <strong>Add X and Y Lines</strong><br><br>
         Users can add X, Y, or combined X–Y lines to any subplot by right double-clicking, as illustrated in the first two images below.
-        This action opens a configuration dialog allowing users to input the desired X and/or Y values for precise reference placement.<br><br>
+        This action opens a configuration dialog allowing users to enter the desired X and/or Y values for precise reference placement.<br><br>
         Multiple reference lines can be added independently on each subplot to highlight different data regions or thresholds,
         as demonstrated in the third image below.<br><br>
         <em>Note:</em> PlotForge supports <strong>Ctrl + Z</strong> (Undo) and <strong>Ctrl + Y</strong> (Redo) for this feature,
-        allowing users to easily revert or reapply line additions and modifications.
+        enabling users to easily revert or reapply line additions and modifications.
       `,
       img1: { src: "Images/feature6-add-lines.png", alt: "Adding X/Y lines – example window" },
       img2: { src: "Images/feature6-add-lines-2.png", alt: "Adding X/Y lines – value input dialog" },
       img3: { src: "Images/feature6-add-lines-3.png", alt: "Multiple X/Y lines across subplots" }
     },
     feature7: {
-      text: `<strong>Region Marking & Highlighting</strong><br><br>
-        Highlight key time intervals, tag anomalies, or separate test phases.`,
-      img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – highlight" },
-      img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – multiple" }
+      text: `
+        <strong>Region Marking & Highlighting</strong><br><br>
+        By double left-clicking within a plot, the user opens a configuration window that displays the X-axis limits,
+        region name, region colour, and the statistics to be computed for that region. Once these parameters are specified
+        and the user selects <em>Compute</em>, the corresponding region is highlighted, as shown in the first two images below.<br><br>
+        This operation can be repeated multiple times on any subplot within the window to create and manage several highlighted regions,
+        as illustrated in the third image.<br><br>
+        <em>Note:</em> PlotForge supports <strong>Ctrl + Z</strong> (Undo) and <strong>Ctrl + Y</strong> (Redo) for this feature,
+        allowing users to conveniently revert or reapply region definitions and modifications.
+      `,
+      img1: { src: "Images/feature7-region-marking.png", alt: "Region Marking – configuration and highlight" },
+      img2: { src: "Images/feature7-region-marking-2.png", alt: "Region Marking – single highlighted region" },
+      img3: { src: "Images/feature7-region-marking-3.png", alt: "Region Marking – multiple regions across plots" }
     },
     feature8: {
       text: `<strong>Data Export</strong><br><br>
-        Export numeric data or images easily. Advanced export options include filtering channels and selecting time ranges.`,
-      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV" },
-      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image" }
+        Export numeric data or images easily. Advanced export options include filtering channels and selecting time ranges
+        to match reporting and documentation requirements.`,
+      img1: { src: "Images/feature6-data-export.png", alt: "Data Export – CSV export dialog" },
+      img2: { src: "Images/feature6-data-export-2.png", alt: "Data Export – image export" },
+      img3: { src: "Images/feature8-data-export-3.png", alt: "Data Export – advanced export configuration" }
     },
     feature9: {
       text: `<strong>Quick Analysis Features</strong><br><br>
-        Perform rapid evaluations with built-in functions like overlay comparison and auto-statistics.`,
+        Perform rapid evaluations with built-in functions such as overlay comparison, automatic statistics,
+        and region-based calculations.`,
       img1: { src: "Images/feature8-quick-analysis.png", alt: "Quick Analysis – demo" },
       img2: { src: "Images/feature8-quick-analysis-2.png", alt: "Quick Analysis – overlay" }
     },
     feature10: {
       text: `<strong>Saving Session</strong><br><br>
-        Save your workspace, including all plots and annotations, to resume later.`,
+        Save your workspace, including all plots, regions, and annotations, so that you can resume your analysis
+        at a later time without reconfiguring the view.`,
       img1: { src: "Images/feature9-saving-session.png", alt: "Saving Session – dialog" },
-      img2: { src: "Images/feature9-saving-session-2.png", alt: "Saving Session – restored" }
+      img2: { src: "Images/feature9-saving-session-2.png", alt: "Saving Session – restored session" }
     },
     feature11: {
       text: `<strong>Keyboard Shortcuts</strong><br><br>
-        Boost productivity with shortcuts for zooming, panning, and toggling traces.`,
+        Boost productivity with keyboard shortcuts for zooming, panning, toggling traces, and other common actions,
+        reducing the time spent on repetitive navigation.`,
       img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Keyboard Shortcuts – overview" },
       img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Keyboard Shortcuts – in action" }
     }
@@ -289,13 +303,17 @@
   selectEl.addEventListener("change", function () {
     const value = this.value;
     const f = featureContent[value];
+
     if (!value || !f) {
       textEl.innerHTML = "";
-      img1El.src = img2El.src = img3El.src = "";
+      img1El.src = "";
+      img2El.src = "";
+      img3El.src = "";
       return;
     }
 
     textEl.innerHTML = f.text;
+
     img1El.src = f.img1?.src || "";
     img1El.alt = f.img1?.alt || "";
     img2El.src = f.img2?.src || "";
