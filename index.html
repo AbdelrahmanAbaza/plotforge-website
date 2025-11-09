@@ -1,180 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PlotForge – Smarter CSV & Excel Analysis</title>
-<style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f7f7f7;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  header {
-    background: #d3d3d3;
-    color: black;
-    padding: 2rem;
-    text-align: center;
-  }
-  h1 { margin-bottom: 0.3rem; }
-  section {
-    padding: 2rem;
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    margin-top: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-  .cta {
-    display: inline-block;
-    margin-top: 1rem;
-    background: #004aad;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  .cta-secondary {
-    display: inline-block;
-    margin-top: 1rem;
-    margin-left: 0.75rem;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    border: 2px solid #004aad;
-    background: white;
-    color: #004aad;
-  }
-  .cta-secondary:hover {
-    background: #004aad;
-    color: white;
-  }
-  .cta-summary {
-    display: inline-block;
-    margin-top: 2rem;
-    background: #ff6600;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.9em;
-    color: #777;
-  }
-  nav {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #004aad;
-    font-weight: 600;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlotForge – Faster than Excel, Simpler than MATLAB</title>
 
-  .feature-select {
-    margin-top: 1rem;
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 400px;
-  }
+  <!-- Basic SEO -->
+  <meta name="description" content="PlotForge is an engineer-friendly data analysis tool for CSV & Excel. Faster than Excel, simpler than MATLAB – with interactive plots, region statistics, and export-ready reports.">
 
-  #feature-content {
-    margin-top: 1.5rem;
-  }
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:title" content="PlotForge – Smarter CSV & Excel Analysis">
+  <meta property="og:description" content="Interactive data analysis for engineers. Compare signals, analyse regions, and export results faster than Excel, simpler than MATLAB.">
+  <meta property="og:type" content="website">
 
-  #feature-text {
-    margin-bottom: 1rem;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-  }
+  <style>
+    :root {
+      --primary: #004aad;
+      --primary-soft: #e5efff;
+      --accent: #ff6600;
+      --bg: #f7f7f7;
+      --text: #333333;
+      --muted: #777777;
+      --radius-lg: 12px;
+      --shadow-soft: 0 2px 10px rgba(0,0,0,0.08);
+    }
 
-  #feature-text.visible {
-    opacity: 1;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  .feature-media {
-    display: block;
-    margin-top: 1rem;
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-  }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
 
-  .feature-media.visible {
-    opacity: 1;
-  }
-</style>
+    header {
+      background: linear-gradient(135deg, #00337a, #004aad);
+      color: #ffffff;
+      padding: 2.8rem 1.5rem 2.4rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+
+    header h1 {
+      margin-bottom: 0.5rem;
+      font-size: 2.4rem;
+      letter-spacing: 0.03em;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      max-width: 640px;
+      margin: 0.25rem auto 1rem;
+      opacity: 0.96;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-badge span {
+      opacity: 0.9;
+    }
+
+    .hero-cta-group {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    section {
+      padding: 2rem 1.5rem;
+      max-width: 900px;
+      margin: 2rem auto 0;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    section.compact {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-intro {
+      margin-bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .cta {
+      display: inline-block;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 0.8rem 1.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      background: #00337a;
+    }
+
+    .cta-secondary {
+      display: inline-block;
+      padding: 0.8rem 1.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      border: 2px solid #ffffff;
+      background: transparent;
+      color: #ffffff;
+      transition: background 0.08s ease, color 0.08s ease, border-color 0.08s ease, transform 0.08s ease;
+    }
+
+    .cta-secondary:hover {
+      background: #ffffff;
+      color: var(--primary);
+      border-color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .cta-secondary-alt {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .cta-secondary-alt:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .cta-summary {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.8rem 1.7rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.98rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.16);
+    }
+
+    .cta-summary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav {
+      margin-top: 0;
+      padding: 0.75rem 1.5rem 0.9rem;
+      text-align: center;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.75rem 0 0.25rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pill-list li {
+      background: var(--primary-soft);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.85rem;
+      color: #123;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .two-column-narrow {
+      grid-template-columns: 1.4fr 1.6fr;
+    }
+
+    .card-muted {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      border: 1px solid #eeeeee;
+      font-size: 0.95rem;
+    }
+
+    .card-muted h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .card-muted p {
+      margin: 0.2rem 0;
+    }
+
+    .card-muted ul {
+      margin-top: 0.4rem;
+      margin-bottom: 0;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .faq-item + .faq-item {
+      border-top: 1px solid #eee;
+      padding-top: 0.9rem;
+    }
+
+    /* Feature selector */
+    .feature-select {
+      margin-top: 0.5rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 0.98rem;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    #feature-content {
+      margin-top: 1.5rem;
+    }
+
+    #feature-text {
+      margin-bottom: 1rem;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      font-size: 0.95rem;
+    }
+
+    #feature-text.visible {
+      opacity: 1;
+    }
+
+    .feature-media {
+      display: block;
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .feature-media.visible {
+      opacity: 1;
+    }
+
+    .feature-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .highlight-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .highlight-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .highlight-row strong {
+      color: var(--text);
+    }
+
+    @media (max-width: 820px) {
+      header h1 {
+        font-size: 2.1rem;
+      }
+      section {
+        margin-top: 1.5rem;
+      }
+      .two-column,
+      .two-column-narrow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        display: inline-block;
+        margin: 4px 8px;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cta, .cta-secondary, .cta-secondary-alt {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <header>
+  <div class="hero-badge">
+    <span>Built for engineering, quality &amp; analytics teams</span>
+  </div>
   <h1>PlotForge</h1>
-  <p>Interactive Data Analysis for Engineers – Faster than Excel, Simpler than MATLAB</p>
+  <p class="tagline">
+    Interactive data analysis for engineers – <strong>Faster than Excel, simpler than MATLAB</strong>.
+    Import CSV &amp; Excel, compare signals, analyse regions, and export results in minutes.
+  </p>
+
+  <div class="hero-cta-group">
+    <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe" class="cta">
+      Download Free 14-Day Trial
+    </a>
+    <a href="#features" class="cta-secondary">
+      View Features &amp; Screenshots
+    </a>
+  </div>
 </header>
 
 <nav>
+  <a href="#what-is">What is PlotForge?</a>
+  <a href="#features">Features</a>
+  <a href="#story">Why I Built It</a>
+  <a href="#download">Feature Summary</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
   <a href="about.html">About</a>
   <a href="information.html#purpose">Purpose &amp; Objectives</a>
 </nav>
 
-<section>
-  <h2>What is PlotForge?</h2>
-  <p>
-    PlotForge is a dedicated data analysis application for engineering, quality, and analytics teams who work daily with CSV and Excel files.
-    It is designed to help organisations standardise their analysis workflows, shorten investigation time, and improve traceability across projects and programs.
-  </p>
-  <p>
-    By combining an intuitive interface with powerful plotting and region analysis tools, PlotForge enables teams to move beyond ad-hoc spreadsheets
-    and establish a repeatable, professional approach to data review.
-  </p>
-  <ul>
-    <li>Rapid import and handling of large CSV &amp; Excel datasets</li>
-    <li>Plot multiple signals on a common X-axis for direct comparison</li>
-    <li>Interactive selection zones with automatic Min / Max / Δ / Avg calculations</li>
-    <li>One-click export of highlighted regions and plots to CSV or image for reporting</li>
-    <li>Reusable templates and session saving to support consistent, repeatable analysis across teams</li>
-  </ul>
+<section id="what-is">
+  <div class="two-column">
+    <div>
+      <div class="eyebrow">Overview</div>
+      <h2>What is PlotForge?</h2>
+      <p>
+        PlotForge is a dedicated data analysis application for engineering, quality, and analytics teams who work daily with CSV and Excel files.
+        It is designed to help organisations standardise their analysis workflows, shorten investigation time, and improve traceability across projects and programs.
+      </p>
+      <p>
+        By combining an intuitive interface with powerful plotting and region analysis tools, PlotForge enables teams to move beyond ad-hoc spreadsheets
+        and establish a repeatable, professional approach to data review.
+      </p>
+      <ul>
+        <li>Rapid import and handling of large CSV &amp; Excel datasets</li>
+        <li>Plot multiple signals on a common X-axis for direct comparison</li>
+        <li>Interactive selection zones with automatic Min / Max / Δ / Avg calculations</li>
+        <li>One-click export of highlighted regions and plots to CSV or image for reporting</li>
+        <li>Reusable templates and session saving to support consistent, repeatable analysis across teams</li>
+      </ul>
 
-  <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe" class="cta">Download Free 14-Day Trial</a>
+      <ul class="pill-list">
+        <li>Test &amp; validation engineers</li>
+        <li>Quality &amp; reliability teams</li>
+        <li>Data &amp; analytics engineers</li>
+      </ul>
+    </div>
 
-  <a href="license.html" class="cta-secondary">
-    Already tried? Want to get a license?
-  </a>
+    <div class="card-muted">
+      <h3>Why teams choose PlotForge</h3>
+      <p>
+        PlotForge sits between everyday spreadsheets and heavyweight scientific tools:
+      </p>
+      <ul>
+        <li><strong>Faster than Excel</strong> for multi-signal plotting and region analysis.</li>
+        <li><strong>Simpler than MATLAB</strong> – no scripting required for common engineering workflows.</li>
+        <li><strong>Designed for investigations</strong> – highlight regions, compute statistics, export and share.</li>
+      </ul>
+      <p style="margin-top:0.75rem;">
+        Already tried PlotForge?
+        <br>
+        <a href="license.html" class="cta-secondary-alt">
+          Already tried it? Get a license
+        </a>
+      </p>
+    </div>
+  </div>
 </section>
 
-<section>
+<section id="features">
+  <div class="eyebrow">Capabilities</div>
   <h2>🧩 PlotForge Features</h2>
-  <p>Select a feature from the list to see its description and screenshots.</p>
+  <p class="section-intro">
+    Browse the feature list below to see how PlotForge supports day-to-day engineering investigations.
+    Each feature includes a short description and example screenshots.
+  </p>
 
-  <label for="feature-select"><strong>Features:</strong></label><br>
+  <label for="feature-select"><strong>Select a feature:</strong></label><br>
   <select id="feature-select" class="feature-select">
-    <option value="">-- Please choose a feature --</option>
-    <option value="feature1">Feature 1 – Single Plots</option>
-    <option value="feature2">Feature 2 – Multiple Plots</option>
-    <option value="feature3">Feature 3 – Live Cursor</option>
-    <option value="feature4">Feature 4 – Axis Limits Modification</option>
-    <option value="feature5">Feature 5 – Live Zone Statistics</option>
-    <option value="feature6">Feature 6 – Add X and Y Lines</option>
-    <option value="feature7">Feature 7 – Region Marking & Highlighting</option>
-    <option value="feature8">Feature 8 – Data Export</option>
-    <option value="feature9">Feature 9 – Multiple Y-Axes on a Single Plot</option>
-    <option value="feature10">Feature 10 – Quick Analysis Features</option>
-    <option value="feature11">Feature 11 – Saving and Loading Sessions</option>
+    <option value="">-- Choose a feature to explore --</option>
+    <option value="feature1">Single Plots</option>
+    <option value="feature2">Multiple Plots on a Common X-Axis</option>
+    <option value="feature3">Live Cursor Readout</option>
+    <option value="feature4">Axis Limits &amp; Zoom Control</option>
+    <option value="feature5">Live Zone Statistics</option>
+    <option value="feature6">Reference X &amp; Y Lines</option>
+    <option value="feature7">Region Marking &amp; Highlighting</option>
+    <option value="feature8">Focused Data Export</option>
+    <option value="feature9">Multiple Y-Axes on a Single Plot</option>
+    <option value="feature10">Quick Analysis Toolbar</option>
+    <option value="feature11">Saving &amp; Loading Sessions</option>
   </select>
 
   <div id="feature-content">
@@ -182,64 +497,156 @@
     <img id="feature-image1" class="feature-media" src="" alt="">
     <img id="feature-image2" class="feature-media" src="" alt="">
     <img id="feature-image3" class="feature-media" src="" alt="">
+    <p class="feature-note">
+      Tip: Use PlotForge’s undo/redo support (<strong>Ctrl + Z</strong>, <strong>Ctrl + Y</strong>) while exploring regions,
+      reference lines, and session changes.
+    </p>
   </div>
 </section>
 
-<section id="download">
-  <h2>⬇️ Download PlotForge Feature Summary</h2>
+<section id="story" class="compact">
+  <div class="eyebrow">Story</div>
+  <h2>Why I built PlotForge</h2>
   <p>
-    Download the feature summary PDF for PlotForge (which includes key details and pricing).<br><br>
-    <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/Feature_Document/PlotForge_Feature_Summary_V1.pdf" class="cta-summary" download>Download Now</a>
+    PlotForge was created by an engineer who spent years analysing test and measurement data in spreadsheets and
+    heavy analysis tools. The same patterns appeared again and again:
+  </p>
+  <ul>
+    <li>Time lost manually building plots from CSV or Excel files.</li>
+    <li>Inconsistent analysis between projects and team members.</li>
+    <li>Complex tools being overkill for day-to-day investigations.</li>
+  </ul>
+  <p>
+    PlotForge is an attempt to fix that: a focused, engineer-friendly tool that keeps the workflows you already know
+    (CSV, Excel, regions, plots) but makes them faster, more repeatable, and easier to share with your team.
   </p>
 </section>
 
-<section>
+<section id="download">
+  <div class="two-column two-column-narrow">
+    <div>
+      <div class="eyebrow">Download</div>
+      <h2>⬇️ Download PlotForge Feature Summary</h2>
+      <p>
+        Get the feature summary PDF for PlotForge, including:
+      </p>
+      <ul>
+        <li>An overview of the main capabilities.</li>
+        <li>Key workflows and analysis examples.</li>
+        <li>Licensing information and pricing details.</li>
+      </ul>
+      <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/Feature_Document/PlotForge_Feature_Summary_V1.pdf" class="cta-summary" download>
+        Download Feature Summary (PDF)
+      </a>
+    </div>
+    <div class="card-muted">
+      <h3>Ready to try PlotForge?</h3>
+      <p>
+        Start with a fully featured <strong>14-day free trial</strong>.
+        No obligation – evaluate it on your own data and workflows.
+      </p>
+      <a href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe" class="cta" style="margin-top:0.6rem;">
+        Download Free 14-Day Trial
+      </a>
+      <div class="highlight-row" style="margin-top:0.8rem;">
+        <span>✔ <strong>Local install</strong></span>
+        <span>✔ Works with CSV &amp; Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="compact">
+  <div class="eyebrow">FAQ</div>
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>Who is PlotForge for?</h3>
+    <p>
+      PlotForge is aimed at engineers and analysts who regularly work with measurement, test, or log data stored in CSV or Excel files.
+      Typical users include test &amp; validation engineers, quality engineers, and analytics teams.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What can I do during the 14-day trial?</h3>
+    <p>
+      The trial is fully featured. You can import your own data, explore all plotting and analysis tools,
+      create regions, export reports, and save/load sessions to see how PlotForge fits into your workflow.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does PlotForge require scripting or coding?</h3>
+    <p>
+      No. PlotForge is built to be used directly by engineers without writing code. Most operations are performed via
+      menus, dialogs, and interactive tools such as cursors, regions, and selection zones.
+    </p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How do I get a license after the trial?</h3>
+    <p>
+      If you decide PlotForge is a good fit, you can visit the license page or contact us directly for a quote:
+      <a href="license.html">Get a license</a> or email
+      <a href="mailto:sales@plotforge.io">sales@plotforge.io</a>.
+    </p>
+  </div>
+</section>
+
+<section id="contact" class="compact">
+  <div class="eyebrow">Contact</div>
   <h2>📩 Contact</h2>
   <p>
-    Questions or need a quote?<br>
+    Have questions, need a quote, or want to discuss a specific use case?<br>
     Email: <a href="mailto:sales@plotforge.io">sales@plotforge.io</a>
   </p>
 </section>
 
 <footer>
-  © 2025 PlotForge | Built by Abdelrahman Abaza
+  © 2025 PlotForge &nbsp;|&nbsp; Built by Abdelrahman Abaza
 </footer>
 
 <script>
   const featureContent = {
     feature1: {
       text: `<strong>Single Plots</strong><br><br>
-        Quickly visualize an individual signal from your CSV or Excel file using the Single Plots tool.`,
+        Quickly visualise an individual signal from your CSV or Excel file using the Single Plots tool.
+        Ideal for first-look inspections, sanity checks, and simple trend analysis before you dive deeper.`,
       img1: { src: "Images/feature1-single-plots.png", alt: "Single Plots – basic view" },
       img2: { src: "Images/feature1-single-plots-2.png", alt: "Single Plots – zoomed view" }
     },
     feature2: {
-      text: `<strong>Multiple Plots</strong><br><br>
-        Overlay several Y-series on a shared X-axis to compare signals and correlations.`,
+      text: `<strong>Multiple Plots on a Common X-Axis</strong><br><br>
+        Overlay several Y-series on a shared X-axis to compare signals and correlations. This is particularly useful
+        when investigating how different channels behave over time or across operating conditions.`,
       img1: { src: "Images/feature2-multiple-plots.png", alt: "Multiple Plots – overview" },
       img2: { src: "Images/feature2-multiple-plots-2.png", alt: "Multiple Plots – comparison view" }
     },
     feature3: {
-      text: `<strong>Live Cursor</strong><br><br>
-        Inspect exact X/Y values across multiple traces simultaneously using a live cursor.`,
+      text: `<strong>Live Cursor Readout</strong><br><br>
+        Inspect exact X/Y values across multiple traces simultaneously using a live cursor. Move the cursor and see
+        aligned readouts for each signal, making it easy to identify peaks, thresholds, and timing relationships.`,
       img1: { src: "Images/feature3-live-cursor.png", alt: "Live Cursor – readout" },
       img2: { src: "Images/feature3-live-cursor-2.png", alt: "Live Cursor – multiple plots" }
     },
     feature4: {
-      text: `<strong>Axis Limits Modification</strong><br><br>
-        Adjust and zoom in on specific data ranges by customizing axis limits.`,
+      text: `<strong>Axis Limits &amp; Zoom Control</strong><br><br>
+        Adjust and zoom in on specific data ranges by customising axis limits. Quickly focus on the time window
+        or value range that matters, without rebuilding your plots from scratch.`,
       img1: { src: "Images/feature4-axis-limits.png", alt: "Axis Limits – manual" },
       img2: { src: "Images/feature4-axis-limits-2.png", alt: "Axis Limits – zoom" }
     },
     feature5: {
       text: `<strong>Live Zone Statistics</strong><br><br>
-        Instantly compute min, max, delta, and average values by dragging a selection zone.`,
+        Instantly compute min, max, delta, and average values by dragging a selection zone. This helps you quantify
+        regions of interest (steady states, transients, plateaus) directly on the plot.`,
       img1: { src: "Images/feature5-live-zone-stats.png", alt: "Live Zone – stats" },
       img2: { src: "Images/feature5-live-zone-stats-2.png", alt: "Live Zone – comparison" }
     },
     feature6: {
       text: `
-        <strong>Add X and Y Lines</strong><br><br>
+        <strong>Reference X &amp; Y Lines</strong><br><br>
         Users can add X, Y, or combined X–Y lines to any subplot by right double-clicking, as illustrated in the first two images below.
         This action opens a configuration dialog allowing users to enter the desired X and/or Y values for precise reference placement.<br><br>
         Multiple reference lines can be added independently on each subplot to highlight different data regions or thresholds,
@@ -253,7 +660,7 @@
     },
     feature7: {
       text: `
-        <strong>Region Marking & Highlighting</strong><br><br>
+        <strong>Region Marking &amp; Highlighting</strong><br><br>
         By double left-clicking within a plot, the user opens a configuration window that displays the X-axis limits,
         region name, region colour, and the statistics to be computed for that region. Once these parameters are specified
         and the user selects <em>Compute</em>, the corresponding region is highlighted, as shown in the first two images below.<br><br>
@@ -268,7 +675,7 @@
     },
     feature8: {
       text: `
-        <strong>Data Export</strong><br><br>
+        <strong>Focused Data Export</strong><br><br>
         By right-clicking on any of the highlighted regions, a dialog window appears prompting the user to save the data corresponding to that specific region.
         Upon confirmation and selection of the desired destination folder, PlotForge automatically generates and saves a new data file containing
         only the values within the selected region.<br><br>
@@ -294,17 +701,23 @@
     },
     feature10: {
       text: `
-        <strong>Quick Analysis Features</strong><br><br>
-        The highlighted bar shown in the second image below allows the user to zoom in, pan, and return to the initial plot view. It also allows the user to see the live values of the X and Y depending on the cursor location. This is helpful for quick analysis.<br><br>
-        For the Configure Subplot Analysis icon shown highlighted in the second image, this allows the user to modify the spacing between multiple subplots in the same window. This feature is useful to allow for extra spaces between plots, header and bottom spacing. It is especially useful where multiple plots are plotted.
+        <strong>Quick Analysis Toolbar</strong><br><br>
+        The highlighted bar shown in the second image below allows the user to zoom in, pan, and return to the initial plot view.
+        It also allows the user to see the live values of the X and Y depending on the cursor location. This is helpful for quick analysis.<br><br>
+        For the Configure Subplot Analysis icon shown highlighted in the second image, this allows the user to modify the spacing between
+        multiple subplots in the same window. This feature is useful to allow for extra spaces between plots, header and bottom spacing,
+        especially where multiple plots are displayed.
       `,
       img1: { src: "Images/feature10-keyboard-shortcuts.png", alt: "Quick Analysis – demo" },
       img2: { src: "Images/feature10-keyboard-shortcuts-2.png", alt: "Quick Analysis – overlay" }
     },
     feature11: {
       text: `
-        <strong>Saving and Loading Sessions</strong><br><br>
-        In order to save the session, the user has to click File and Save (as shown in the first image below). This feature allows the user to save the session as a JSON file which can be loaded later (as shown in the second image below). In order for a successful reload of the session, the data file path has to be maintained and the user has to click File, Save and Load.
+        <strong>Saving &amp; Loading Sessions</strong><br><br>
+        To save the current session, the user clicks <em>File &gt; Save</em> (as shown in the first image below). This feature allows the user
+        to save the session as a JSON file which can be loaded later (as shown in the second image below). For a successful reload of the session,
+        the data file path has to be maintained and the user has to click <em>File &gt; Save &amp; Load</em>.<br><br>
+        This makes it easy to resume investigations, share setups, and keep analyses consistent across projects.
       `,
       img1: { src: "Images/feature11-saving-session.png", alt: "Saving Session – save dialog" },
       img2: { src: "Images/feature11-saving-session-2.png", alt: "Loading Session – restored view" },
@@ -325,8 +738,15 @@
     if (!value || !f) {
       textEl.innerHTML = "";
       img1El.src = "";
+      img1El.alt = "";
       img2El.src = "";
+      img2El.alt = "";
       img3El.src = "";
+      img3El.alt = "";
+      textEl.classList.remove("visible");
+      img1El.classList.remove("visible");
+      img2El.classList.remove("visible");
+      img3El.classList.remove("visible");
       return;
     }
 
