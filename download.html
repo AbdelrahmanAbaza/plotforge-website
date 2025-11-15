@@ -168,6 +168,8 @@
       font-size: 0.98rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.16);
       transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease, opacity 0.08s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .cta:hover {
@@ -234,6 +236,132 @@
         padding: 1.5rem 1.25rem 1.75rem;
       }
     }
+
+    /* --- POPUP / MODAL STYLES --- */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: none; /* hidden by default */
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      max-width: 420px;
+      width: 92%;
+      padding: 1.6rem 1.75rem 1.75rem;
+      position: relative;
+    }
+
+    .modal h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .form-field {
+      margin-bottom: 0.9rem;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .form-field span.required {
+      color: #d00;
+      font-weight: bold;
+      margin-left: 2px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #cccccc;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .form-field input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255,123,0,0.15);
+    }
+
+    .modal-footer-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    .modal-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-radius: 8px;
+      border: 1px solid #cccccc;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-ghost:hover {
+      background: #f5f5f5;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      border: none;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 0.6rem 1.3rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: #e66f00;
+    }
+
+    .error-message {
+      font-size: 0.8rem;
+      color: #d00;
+      margin-top: -0.3rem;
+      margin-bottom: 0.6rem;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -274,12 +402,15 @@
         <p class="muted" style="margin: 0.25rem 0 0.9rem;">
           Standard Windows desktop installer. Requires permission to install applications on your machine.
         </p>
-        <a
-          href="https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe"
+
+        <!-- CHANGED: this is a button that opens the popup instead of direct link -->
+        <button
+          type="button"
           class="cta"
+          id="openDownloadModal"
         >
           Download 14-Day Trial (Windows)
-        </a>
+        </button>
       </li>
     </ul>
 
@@ -298,6 +429,147 @@
 <footer>
   © 2025 PlotForge &nbsp;|&nbsp; Built by Abdelrahman Abaza
 </footer>
+
+<!-- ===========================
+     DOWNLOAD POPUP MODAL
+     =========================== -->
+<div class="modal-backdrop" id="downloadModalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="downloadModalTitle">
+    <button class="modal-close" type="button" id="closeDownloadModal" aria-label="Close">×</button>
+    <h3 id="downloadModalTitle">Before you download</h3>
+    <p class="modal-subtitle">
+      Please share a few details so we can support you better with PlotForge updates and tips.
+    </p>
+
+    <form id="downloadLeadForm" novalidate>
+      <div class="form-field">
+        <label for="leadName">Name <span class="required">*</span></label>
+        <input type="text" id="leadName" name="name" required>
+        <div class="error-message" id="nameError">Please enter your name.</div>
+      </div>
+
+      <div class="form-field">
+        <label for="leadEmail">Email <span class="required">*</span></label>
+        <input type="email" id="leadEmail" name="email" required>
+        <div class="error-message" id="emailError">Please enter a valid email address.</div>
+      </div>
+
+      <div class="form-field">
+        <label for="leadCompany">Company (optional)</label>
+        <input type="text" id="leadCompany" name="company">
+      </div>
+
+      <div class="form-field">
+        <label for="leadPhone">Phone (optional)</label>
+        <input type="tel" id="leadPhone" name="phone">
+      </div>
+
+      <div class="modal-footer-text">
+        We respect your privacy. Your details will only be used to support your use of PlotForge.
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="cancelDownloadModal">Cancel</button>
+        <button type="submit" class="btn-primary">Submit &amp; Download</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // --- CONFIG: your download URL ---
+  const DOWNLOAD_URL = "https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe";
+
+  // Elements
+  const openBtn = document.getElementById('openDownloadModal');
+  const backdrop = document.getElementById('downloadModalBackdrop');
+  const closeBtn = document.getElementById('closeDownloadModal');
+  const cancelBtn = document.getElementById('cancelDownloadModal');
+  const form = document.getElementById('downloadLeadForm');
+
+  const nameInput = document.getElementById('leadName');
+  const emailInput = document.getElementById('leadEmail');
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+
+  function openModal() {
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden', 'false');
+    nameInput.focus();
+  }
+
+  function closeModal() {
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden', 'true');
+  }
+
+  // Open modal when clicking the download button
+  openBtn.addEventListener('click', openModal);
+
+  // Close buttons
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+
+  // Close when clicking outside the modal
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) {
+      closeModal();
+    }
+  });
+
+  // Basic form validation + redirect
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    let valid = true;
+
+    // Reset errors
+    nameError.style.display = 'none';
+    emailError.style.display = 'none';
+
+    const nameValue = nameInput.value.trim();
+    const emailValue = emailInput.value.trim();
+
+    if (!nameValue) {
+      nameError.style.display = 'block';
+      valid = false;
+    }
+
+    // Simple email check
+    if (!emailValue || !emailValue.includes('@') || !emailValue.includes('.')) {
+      emailError.style.display = 'block';
+      valid = false;
+    }
+
+    if (!valid) {
+      return;
+    }
+
+    // At this point, data is valid.
+    // You can send it to your backend or a service like Formspree/Zapier/etc.
+    // For now we'll just log it and redirect to the download URL.
+
+    const payload = {
+      name: nameValue,
+      email: emailValue,
+      company: document.getElementById('leadCompany').value.trim(),
+      phone: document.getElementById('leadPhone').value.trim(),
+      ts: new Date().toISOString()
+    };
+
+    console.log("New PlotForge lead:", payload);
+
+    // TODO (optional):
+    // 1) Use fetch() to POST 'payload' to your API / form service.
+    // 2) Only redirect after a successful response.
+
+    // Close the modal
+    closeModal();
+
+    // Start the download
+    window.location.href = DOWNLOAD_URL;
+  });
+</script>
 
 </body>
 </html>
