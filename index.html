@@ -45,6 +45,18 @@
       padding: 2.8rem 1.5rem 2.4rem;
       text-align: center;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      position: relative; /* added so the logo can be positioned inside */
+    }
+
+    /* NEW: brand logo in top-left of grey header */
+    .brand-logo {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      height: 40px;
+      width: auto;
+      border-radius: 6px;  /* optional soft corners */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12); /* optional soft shadow */
     }
 
     header h1 {
@@ -401,6 +413,9 @@
 <body>
 
 <header>
+  <!-- NEW: brand logo image in top-left -->
+  <img src="plotforge_logo.png" alt="PlotForge logo" class="brand-logo">
+
   <div class="hero-badge">
     <span>Built for engineering, quality &amp; analytics teams</span>
   </div>
