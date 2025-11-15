@@ -49,15 +49,22 @@
     }
 
     /* NEW: brand logo in top-left of grey header */
-    .brand-logo {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      height: 40px;
-      width: auto;
-      border-radius: 6px;  /* optional soft corners */
-      box-shadow: 0 2px 6px rgba(0,0,0,0.12); /* optional soft shadow */
-    }
+  .brand-logo {
+     position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 70px;       /* bigger on desktop */
+    width: auto;
+    z-index: 20;        /* stays above background, below text */
+  }
+    /* --- Mobile behaviour --- */
+  @media (max-width: 600px) {
+  .brand-logo {
+      height: 40px;     /* smaller on phones */
+      top: 10px;        /* adjust spacing */
+      left: 10px;
+  }
+}
 
     header h1 {
       margin-bottom: 0.5rem;
