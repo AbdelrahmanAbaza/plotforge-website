@@ -403,7 +403,7 @@
           Standard Windows desktop installer. Requires permission to install applications on your machine.
         </p>
 
-        <!-- CHANGED: this is a button that opens the popup instead of direct link -->
+        <!-- Button that opens the popup -->
         <button
           type="button"
           class="cta"
@@ -480,6 +480,10 @@
   // --- CONFIG: your download URL ---
   const DOWNLOAD_URL = "https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe";
 
+  // --- CONFIG: your Google Apps Script Web App URL (for saving to Google Sheets) ---
+  // Replace the placeholder below with your actual Web App "exec" URL from Apps Script
+  const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwmnavmzAgcmzlwurri14gFYCmqonmfis_fsy2jRY7UU0woJHQvBNKWdn_-KXtCUmwI/exec";
+
   // Elements
   const openBtn = document.getElementById('openDownloadModal');
   const backdrop = document.getElementById('downloadModalBackdrop');
@@ -517,7 +521,7 @@
     }
   });
 
-  // Basic form validation + redirect
+  // Form validation + send to Google Sheets + redirect
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -545,29 +549,60 @@
       return;
     }
 
-    // At this point, data is valid.
-    // You can send it to your backend or a service like Formspree/Zapier/etc.
-    // For now we'll just log it and redirect to the download URL.
-
+    // Prepare payload for Google Apps Script
     const payload = {
       name: nameValue,
       email: emailValue,
       company: document.getElementById('leadCompany').value.trim(),
       phone: document.getElementById('leadPhone').value.trim(),
-      ts: new Date().toISOString()
+      source: "plotforge-download-page"
     };
 
     console.log("New PlotForge lead:", payload);
 
-    // TODO (optional):
-    // 1) Use fetch() to POST 'payload' to your API / form service.
-    // 2) Only redirect after a successful response.
+    const submitButton = form.querySelector('.btn-primary');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
 
-    // Close the modal
-    closeModal();
+    // Send lead data to Google Apps Script Web App
+    fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+    .then(function(response) {
+      return response.text().then(function(text) {
+        try {
+          const data = JSON.parse(text);
+          if (data.status !== 'success') {
+            console.warn("Lead save error:", data);
+            alert("We couldn't save your details to the lead sheet, but your download will still start.");
+          }
+        } catch (err) {
+          console.warn("Non-JSON response from Apps Script:", text);
+        }
 
-    // Start the download
-    window.location.href = DOWNLOAD_URL;
+        // Close modal and start download
+        closeModal();
+        window.location.href = DOWNLOAD_URL;
+      });
+    })
+    .catch(function(error) {
+      console.error("Network or Apps Script error:", error);
+      alert("There was a problem sending your details, but your download will still start.");
+      closeModal();
+      window.location.href = DOWNLOAD_URL;
+    })
+    .finally(function() {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit & Download";
+      }
+    });
   });
 </script>
 
