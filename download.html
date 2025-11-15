@@ -481,7 +481,7 @@
   const DOWNLOAD_URL = "https://github.com/AbdelrahmanAbaza/plotforge-website/releases/download/v1.0.0/PlotForgeSetup_V1.exe";
 
   // --- CONFIG: your Google Apps Script Web App URL (for saving to Google Sheets) ---
-  // Replace the placeholder below with your actual Web App "exec" URL from Apps Script
+  // Use your deployed "exec" URL
   const LEAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbxD0QDT265g9KSs5xn9zZiyRNS_sgKifzqvIHUcspf8WYL6n7YOo9ha9ZeVCA8PxgmH/exec";
 
   // Elements
@@ -558,7 +558,7 @@
       source: "plotforge-download-page"
     };
 
-    console.log("New PlotForge lead:", payload);
+    console.log("Sending PlotForge lead:", payload);
 
     const submitButton = form.querySelector('.btn-primary');
     if (submitButton) {
@@ -566,43 +566,39 @@
       submitButton.textContent = "Sending...";
     }
 
-    // Send lead data to Google Apps Script Web App
-    fetch(LEAD_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-    .then(function(response) {
-      return response.text().then(function(text) {
-        try {
-          const data = JSON.parse(text);
-          if (data.status !== 'success') {
-            console.warn("Lead save error:", data);
-            alert("We couldn't save your details to the lead sheet, but your download will still start.");
-          }
-        } catch (err) {
-          console.warn("Non-JSON response from Apps Script:", text);
-        }
-
-        // Close modal and start download
+    // Fire-and-forget request to Apps Script (no-cors to avoid CORS errors)
+    try {
+      fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors", // avoid CORS blocking
+        headers: {
+          // text/plain is a "simple" content type that works with no-cors
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload),
+      }).catch(function (error) {
+        // In no-cors, we can't see much, but log just in case
+        console.warn("Lead send error (ignored for user):", error);
+      }).finally(function () {
+        // Close modal and start download regardless
         closeModal();
         window.location.href = DOWNLOAD_URL;
+
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit & Download";
+        }
       });
-    })
-    .catch(function(error) {
-      console.error("Network or Apps Script error:", error);
-      alert("There was a problem sending your details, but your download will still start.");
+    } catch (err) {
+      console.error("Unexpected error sending lead:", err);
       closeModal();
       window.location.href = DOWNLOAD_URL;
-    })
-    .finally(function() {
+
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = "Submit & Download";
       }
-    });
+    }
   });
 </script>
 
