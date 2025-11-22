@@ -388,6 +388,28 @@
       color: var(--text);
     }
 
+    /* NEW: video styling under features */
+    .demo-video-wrap {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #eee;
+    }
+
+    .demo-video {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: block;
+      margin-top: 0.75rem;
+    }
+
+    .demo-video-caption {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin: 0.25rem 0 0;
+    }
+
     @media (max-width: 820px) {
       header h1 {
         font-size: 2.1rem;
@@ -534,6 +556,23 @@
     <p class="feature-note">
       Tip: Use PlotForge’s undo/redo support (<strong>Ctrl + Z</strong>, <strong>Ctrl + Y</strong>) while exploring regions,
       reference lines, and session changes.
+    </p>
+  </div>
+
+  <!-- NEW: Feature demo video section (kept within Features section) -->
+  <div class="demo-video-wrap" aria-labelledby="demo-video-title">
+    <h3 id="demo-video-title" style="margin-top:0;">🎥 Feature Demonstration Video</h3>
+    <p class="section-intro" style="margin-bottom:0.5rem;">
+      Watch a short walkthrough showing PlotForge’s core plotting, region analysis, and export workflows in action.
+    </p>
+
+    <video class="demo-video" controls preload="metadata">
+      <source src="Dem_V1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <p class="demo-video-caption">
+      Video file: <strong>Dem_V1.mp4</strong>
     </p>
   </div>
 </section>
